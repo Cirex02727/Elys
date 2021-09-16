@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 #include "Elys/Core.h"
 
 namespace Elys {

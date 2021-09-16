@@ -9,6 +9,12 @@ workspace "Elys"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Elys/vendor/GLFW/include"
+
+include "Elys/vendor/GLFW"
+
 project "Elys"
 	location "Elys"
 	kind "SharedLib"
@@ -25,9 +31,20 @@ project "Elys"
 		"%{prj.name}/src/**.cpp",
 	}
 
+	defines {
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
+	}
+
 	includedirs {
 		"%{prj.name}/src", 
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

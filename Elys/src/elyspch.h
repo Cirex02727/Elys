@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Elys/Log.h"
 
 #ifdef ELYS_PLATFORM_WINDOWS
 	#include <Windows.h>
