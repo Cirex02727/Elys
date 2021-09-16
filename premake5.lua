@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Elys/vendor/GLFW/include"
+IncludeDir["Glad"] = "Elys/vendor/Glad/include"
 
 include "Elys/vendor/GLFW"
+include "Elys/vendor/Glad"
 
 project "Elys"
 	location "Elys"
@@ -39,11 +41,13 @@ project "Elys"
 	includedirs {
 		"%{prj.name}/src", 
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links {
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Elys"
 
 		defines {
 			"ELYS_PLATFORM_WINDOWS",
-			"ELYS_BUILD_DLL"
+			"ELYS_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {
@@ -63,17 +68,17 @@ project "Elys"
 
 	filter "configurations:Debug"
 		defines "ELYS_DEBUG"
-		buildoptions "/MDd"
+		staticruntime "off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ELYS_RELEASE"
-		buildoptions "/MD"
+		staticruntime "off"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ELYS_DIST"
-		buildoptions "/MD"
+		staticruntime "off"
 		optimize "On"
 
 project "Sandbox"
@@ -109,15 +114,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "ELYS_DEBUG"
-		buildoptions "/MDd"
+		staticruntime "off"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ELYS_RELEASE"
-		buildoptions "/MD"
+		staticruntime "off"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ELYS_DIST"
-		buildoptions "/MD"
+		staticruntime "off"
 		optimize "On"
