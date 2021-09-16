@@ -46,6 +46,9 @@
     <ClInclude Include="src\Elys\ImGui\ImGuiLayer.h">
       <Filter>Elys\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Input.h">
+      <Filter>Elys</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Layer.h">
       <Filter>Elys</Filter>
     </ClInclude>
@@ -58,6 +61,9 @@
     <ClInclude Include="src\Elys\Window.h">
       <Filter>Elys</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLLoader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
@@ -65,7 +71,9 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\elyspch.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLLoader.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Elys\KeyCodes.h" />
+    <ClInclude Include="src\Elys\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Application.cpp">
@@ -85,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

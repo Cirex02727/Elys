@@ -1,5 +1,6 @@
 workspace "Elys"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations {
 		"Debug",
@@ -15,14 +16,18 @@ IncludeDir["GLFW"] = "Elys/vendor/GLFW/include"
 IncludeDir["Glad"] = "Elys/vendor/Glad/include"
 IncludeDir["ImGui"] = "Elys/vendor/imgui"
 
-include "Elys/vendor/GLFW"
-include "Elys/vendor/Glad"
-include "Elys/vendor/imgui"
+group "Dependencies"
+	include "Elys/vendor/GLFW"
+	include "Elys/vendor/Glad"
+	include "Elys/vendor/imgui"
+
+group ""
 
 project "Elys"
 	location "Elys"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -57,7 +62,6 @@ project "Elys"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -67,28 +71,29 @@ project "Elys"
 		}
 
 		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
 		defines "ELYS_DEBUG"
-		staticruntime "off"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ELYS_RELEASE"
-		staticruntime "off"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ELYS_DIST"
-		staticruntime "off"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -109,7 +114,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -118,15 +122,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "ELYS_DEBUG"
-		staticruntime "off"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ELYS_RELEASE"
-		staticruntime "off"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "ELYS_DIST"
-		staticruntime "off"
+		runtime "Release"
 		optimize "On"

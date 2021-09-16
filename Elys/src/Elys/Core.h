@@ -10,6 +10,10 @@
 	#error Elys only support Windows!
 #endif // ELYS_PLATFORM_WINDOWS
 
+#if ELYS_DEBUG
+	#define ELYS_ENABLE_ASSERTS
+#endif
+
 #ifdef ELYS_ENABLE_ASSERTS
 	#define ELYS_ASSERT(x, ...) { if(!(x)) { ELYS_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define ELYS_CORE_ASSERT(x, ...) { if(!(x)) { ELYS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
