@@ -37,6 +37,12 @@
     <ClInclude Include="src\Elys\Events\MouseEvent.h">
       <Filter>Elys\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Layer.h">
+      <Filter>Elys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\LayerStack.h">
+      <Filter>Elys</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Log.h">
       <Filter>Elys</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Application.cpp">
+      <Filter>Elys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Layer.cpp">
+      <Filter>Elys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\LayerStack.cpp">
       <Filter>Elys</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Log.cpp">

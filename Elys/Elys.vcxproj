@@ -54,7 +54,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Debug-windows-x86_64\Elys\</OutDir>
     <IntDir>..\bin-int\Debug-windows-x86_64\Elys\</IntDir>
     <TargetName>Elys</TargetName>
@@ -83,7 +83,7 @@
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -149,6 +149,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Elys\Layer.h" />
+    <ClInclude Include="src\Elys\LayerStack.h" />
     <ClInclude Include="src\Elys.h" />
     <ClInclude Include="src\Elys\Application.h" />
     <ClInclude Include="src\Elys\Core.h" />
@@ -163,6 +165,8 @@
     <ClInclude Include="src\elyspch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Elys\Layer.cpp" />
+    <ClCompile Include="src\Elys\LayerStack.cpp" />
     <ClCompile Include="src\Elys\Application.cpp" />
     <ClCompile Include="src\Elys\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
