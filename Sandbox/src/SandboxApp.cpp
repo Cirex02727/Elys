@@ -19,6 +19,7 @@ class Sandbox : public Elys::Application {
 	public:
 		Sandbox() {
 			PushLayer(new ExampleLayer());
+			PushOverlay(new Elys::ImGuiLayer());
 		}
 
 		~Sandbox() {
