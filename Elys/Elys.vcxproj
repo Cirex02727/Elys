@@ -155,7 +155,9 @@
     <ClInclude Include="src\Elys\LayerStack.h" />
     <ClInclude Include="src\Elys\Log.h" />
     <ClInclude Include="src\Elys\MouseButtonCodes.h" />
+    <ClInclude Include="src\Elys\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Elys\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\elyspch.h" />
@@ -582,6 +584,7 @@
     <ClCompile Include="src\Elys\Layer.cpp" />
     <ClCompile Include="src\Elys\LayerStack.cpp" />
     <ClCompile Include="src\Elys\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\elyspch.cpp">
