@@ -14,6 +14,6 @@
 
 #include "Elys/Log.h"
 
-#ifdef HZ_PLATFORM_WINDOWS
+#ifdef ELYS_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

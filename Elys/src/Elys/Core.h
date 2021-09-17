@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef ELYS_PLATFORM_WINDOWS
+#if ELYS_DYNAMIC_LINK
 	#ifdef ELYS_BUILD_DLL
 		#define Elys_API __declspec(dllexport)
 	#else
 		#define Elys_API __declspec(dllimport)
 	#endif
+#else
+#define Elys_API
+#endif
 #else
 	#error Elys only supports Windows!
 #endif

@@ -1,15 +1,15 @@
 #pragma once
 
-#ifdef HZ_PLATFORM_WINDOWS
+#ifdef ELYS_PLATFORM_WINDOWS
 
 extern Elys::Application* Elys::CreateApplication();
 
 int main(int argc, char** argv)
 {
 	Elys::Log::Init();
-	HZ_CORE_WARN("Initialized Log!");
+	ELYS_CORE_WARN("Initialized Log!");
 	int a = 5;
-	HZ_INFO("Hello! Var={0}", a);
+	ELYS_INFO("Hello! Var={0}", a);
 
 	auto app = Elys::CreateApplication();
 	app->Run();
