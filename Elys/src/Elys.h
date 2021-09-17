@@ -12,6 +12,6 @@
 
 #include "Elys/ImGui/ImGuiLayer.h"
 
-// ---Entry Point------------------
+// ---Entry Point---------------------
 #include "Elys/EntryPoint.h"
-// --------------------------------
+// -----------------------------------

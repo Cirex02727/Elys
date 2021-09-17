@@ -2,7 +2,8 @@ workspace "Elys"
 	architecture "x64"
 	startproject "Sandbox"
 
-	configurations {
+	configurations
+	{
 		"Debug",
 		"Release",
 		"Dist"
@@ -10,18 +11,16 @@ workspace "Elys"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
--- include directories relative to root folder (solution directory)
+-- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Elys/vendor/GLFW/include"
 IncludeDir["Glad"] = "Elys/vendor/Glad/include"
 IncludeDir["ImGui"] = "Elys/vendor/imgui"
+IncludeDir["glm"] = "Elys/vendor/glm"
 
-group "Dependencies"
-	include "Elys/vendor/GLFW"
-	include "Elys/vendor/Glad"
-	include "Elys/vendor/imgui"
-
-group ""
+include "Elys/vendor/GLFW"
+include "Elys/vendor/Glad"
+include "Elys/vendor/imgui"
 
 project "Elys"
 	location "Elys"
@@ -35,25 +34,26 @@ project "Elys"
 	pchheader "elyspch.h"
 	pchsource "Elys/src/elyspch.cpp"
 
-	files {
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
-	defines {
-		"_CRT_SECURE_NO_WARNINGS",
-		"GLFW_INCLUDE_NONE"
-	}
-
-	includedirs {
-		"%{prj.name}/src", 
+	includedirs
+	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
-	links {
+	links 
+	{ 
 		"GLFW",
 		"Glad",
 		"ImGui",
@@ -64,13 +64,15 @@ project "Elys"
 		cppdialect "C++17"
 		systemversion "latest"
 
-		defines {
+		defines
+		{
 			"ELYS_PLATFORM_WINDOWS",
 			"ELYS_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands {
+		postbuildcommands
+		{
 			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
@@ -98,17 +100,22 @@ project "Sandbox"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files {
+	files
+	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs {
+	includedirs
+	{
 		"Elys/vendor/spdlog/include",
-		"Elys/src"
+		"Elys/src",
+		"Elys/vendor",
+		"%{IncludeDir.glm}"
 	}
 
-	links {
+	links
+	{
 		"Elys"
 	}
 
@@ -116,7 +123,8 @@ project "Sandbox"
 		cppdialect "C++17"
 		systemversion "latest"
 
-		defines {
+		defines
+		{
 			"ELYS_PLATFORM_WINDOWS"
 		}
 
