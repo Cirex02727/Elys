@@ -4,7 +4,7 @@
 
 namespace Elys {
 
-	class Elys_API KeyEvent : public Event
+	class ELYS_API KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -17,7 +17,7 @@ namespace Elys {
 		int m_KeyCode;
 	};
 
-	class Elys_API KeyPressedEvent : public KeyEvent
+	class ELYS_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -37,7 +37,7 @@ namespace Elys {
 		int m_RepeatCount;
 	};
 
-	class Elys_API KeyReleasedEvent : public KeyEvent
+	class ELYS_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)
@@ -53,7 +53,7 @@ namespace Elys {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class Elys_API KeyTypedEvent : public KeyEvent
+	class ELYS_API KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int keycode)

@@ -4,7 +4,7 @@
 
 namespace Elys {
 
-	class Elys_API WindowResizeEvent : public Event
+	class ELYS_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -26,7 +26,7 @@ namespace Elys {
 		unsigned int m_Width, m_Height;
 	};
 
-	class Elys_API WindowCloseEvent : public Event
+	class ELYS_API WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -35,7 +35,7 @@ namespace Elys {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class Elys_API AppTickEvent : public Event
+	class ELYS_API AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -44,7 +44,7 @@ namespace Elys {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class Elys_API AppUpdateEvent : public Event
+	class ELYS_API AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -53,7 +53,7 @@ namespace Elys {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class Elys_API AppRenderEvent : public Event
+	class ELYS_API AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}

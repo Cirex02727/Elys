@@ -19,9 +19,12 @@ IncludeDir["ImGui"] = "Elys/vendor/imgui"
 IncludeDir["glm"] = "Elys/vendor/glm"
 IncludeDir["stb_image"] = "Elys/vendor/stb_image"
 
-include "Elys/vendor/GLFW"
-include "Elys/vendor/Glad"
-include "Elys/vendor/imgui"
+group "Dependencies"
+	include "Elys/vendor/GLFW"
+	include "Elys/vendor/Glad"
+	include "Elys/vendor/imgui"
+
+group ""
 
 project "Elys"
 	location "Elys"

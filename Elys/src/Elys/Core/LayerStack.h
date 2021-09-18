@@ -7,7 +7,7 @@
 
 namespace Elys {
 
-	class Elys_API LayerStack
+	class ELYS_API LayerStack
 	{
 	public:
 		LayerStack();

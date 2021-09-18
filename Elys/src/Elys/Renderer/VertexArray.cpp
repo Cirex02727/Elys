@@ -6,7 +6,7 @@
 
 namespace Elys {
 
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -15,7 +15,7 @@ namespace Elys {
 				return nullptr;
 
 			case RendererAPI::API::OpenGL:
-				return new OpenGLVertexArray();
+				return std::make_shared<OpenGLVertexArray>();
 		}
 
 		ELYS_CORE_ASSERT(false, "Unknown RendererAPI!");

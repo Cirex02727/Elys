@@ -6,7 +6,7 @@
 
 namespace Elys {
 
-	class Elys_API Layer
+	class ELYS_API Layer
 	{
 		public:
 			Layer(const std::string& name = "Layer");

@@ -4,7 +4,7 @@
 
 namespace Elys {
 
-	class Elys_API MouseMovedEvent : public Event
+	class ELYS_API MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -26,7 +26,7 @@ namespace Elys {
 		float m_MouseX, m_MouseY;
 	};
 
-	class Elys_API MouseScrolledEvent : public Event
+	class ELYS_API MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -48,7 +48,7 @@ namespace Elys {
 		float m_XOffset, m_YOffset;
 	};
 
-	class Elys_API MouseButtonEvent : public Event
+	class ELYS_API MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return m_Button; }
@@ -61,7 +61,7 @@ namespace Elys {
 		int m_Button;
 	};
 
-	class Elys_API MouseButtonPressedEvent : public MouseButtonEvent
+	class ELYS_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -77,7 +77,7 @@ namespace Elys {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class Elys_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class ELYS_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

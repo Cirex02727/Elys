@@ -19,7 +19,7 @@
 
 namespace Elys {
 
-	class Elys_API Application
+	class ELYS_API Application
 	{
 		public:
 			Application();

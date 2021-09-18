@@ -22,12 +22,12 @@ namespace Elys {
 	};
 
 	// Interface representing a desktop system based Window
-	class Elys_API Window
+	class ELYS_API Window
 	{
 		public:
 			using EventCallbackFn = std::function<void(Event&)>;
 
-			virtual ~Window() {}
+			virtual ~Window() = default;
 
 			virtual void OnUpdate() = 0;
 

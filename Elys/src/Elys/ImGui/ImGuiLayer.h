@@ -8,7 +8,7 @@
 
 namespace Elys {
 
-	class Elys_API ImGuiLayer : public Layer
+	class ELYS_API ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();

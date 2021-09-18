@@ -27,8 +27,3 @@
 
 #include "Elys/Renderer/OrthographicCamera.h"
 // -----------------------------------
-
-
-// ---Entry Point---------------------
-#include "Elys/Core/EntryPoint.h"
-// -----------------------------------
