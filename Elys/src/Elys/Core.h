@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef ELYS_PLATFORM_WINDOWS
 #if ELYS_DYNAMIC_LINK
 	#ifdef ELYS_BUILD_DLL
@@ -29,3 +31,12 @@
 #define BIT(x) (1 << x)
 
 #define ELYS_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Elys {
+
+	template<typename T>
+	using Escope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}

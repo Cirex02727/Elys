@@ -1,8 +1,11 @@
 #include <Elys.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Elys::Layer
 {
@@ -18,7 +21,7 @@ class ExampleLayer : public Elys::Layer
 				 0.0f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f,
 			};
 
-			std::shared_ptr<Elys::VertexBuffer> m_VertexBuffer;
+			Elys::Ref<Elys::VertexBuffer> m_VertexBuffer;
 			m_VertexBuffer.reset(Elys::VertexBuffer::Create(vertices, sizeof(vertices)));
 			Elys::BufferLayout layout = {
 				{ Elys::ShaderDataType::Float3, "a_Position" },
@@ -29,7 +32,7 @@ class ExampleLayer : public Elys::Layer
 			m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
 			uint32_t indices[3] = { 0, 1, 2 };
-			std::shared_ptr<Elys::IndexBuffer> m_IndexBuffer;
+			Elys::Ref<Elys::IndexBuffer> m_IndexBuffer;
 			m_IndexBuffer.reset(Elys::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 			m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
@@ -43,7 +46,7 @@ class ExampleLayer : public Elys::Layer
 				-0.5f,  0.5f, 0.0f
 			};
 
-			std::shared_ptr<Elys::VertexBuffer> squareVB;
+			Elys::Ref<Elys::VertexBuffer> squareVB;
 			squareVB.reset(Elys::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 			squareVB->SetLayout({
 				{ Elys::ShaderDataType::Float3, "a_Position" }
@@ -51,7 +54,7 @@ class ExampleLayer : public Elys::Layer
 			m_SquareVA->AddVertexBuffer(squareVB);
 
 			uint32_t sqareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-			std::shared_ptr<Elys::IndexBuffer> squareIB;
+			Elys::Ref<Elys::IndexBuffer> squareIB;
 			squareIB.reset(Elys::IndexBuffer::Create(sqareIndices, sizeof(sqareIndices) / sizeof(uint32_t)));
 			m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -89,10 +92,10 @@ class ExampleLayer : public Elys::Layer
 				}
 			)";
 
-			m_Shader.reset(new Elys::Shader(vertexSrc, fragmentSrc));
+			m_Shader.reset(Elys::Shader::Create(vertexSrc, fragmentSrc));
 
 
-			std::string blueVertexSrc = R"(
+			std::string flatColorVertexSrc = R"(
 				#version 330 core
 				
 				layout(location = 0) in vec3 a_Position;
@@ -109,20 +112,22 @@ class ExampleLayer : public Elys::Layer
 				}
 			)";
 
-			std::string blueFragmentSrc = R"(
+			std::string flatColorFragmentSrc = R"(
 				#version 330 core
 			
 				layout(location = 0) out vec4 color;
 			
 				in vec3 v_Position;
+				
+				uniform vec3 u_Color;
 			
 				void main()
 				{
-					color = vec4(0.2, 0.3, 0.8, 1.0);
+					color = vec4(u_Color, 1.0);
 				}
 			)";
 
-			m_BlueShader.reset(new Elys::Shader(blueVertexSrc, blueFragmentSrc));
+			m_FlatColorShader.reset(Elys::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
 		}
 
 		void OnUpdate(Elys::Timestep ts) override
@@ -153,12 +158,15 @@ class ExampleLayer : public Elys::Layer
 
 			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+			std::dynamic_pointer_cast<Elys::OpenGLShader>(m_FlatColorShader)->Bind();
+			std::dynamic_pointer_cast<Elys::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 			for (int y = 0; y < 20; y++)
 			{
 				for (int x = 0; x < 20; x++) {
 					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					Elys::Renderer::Submit(m_BlueShader, m_SquareVA, transform);
+					Elys::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 				}
 			}
 
@@ -169,7 +177,9 @@ class ExampleLayer : public Elys::Layer
 
 		virtual void OnImGuiRender() override
 		{
-
+			ImGui::Begin("Settings");
+			ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+			ImGui::End();
 		}
 
 		void OnEvent(Elys::Event& event) override
@@ -178,11 +188,11 @@ class ExampleLayer : public Elys::Layer
 		}
 
 	private:
-		std::shared_ptr<Elys::Shader> m_Shader;
-		std::shared_ptr<Elys::VertexArray> m_VertexArray;
+		Elys::Ref<Elys::Shader> m_Shader;
+		Elys::Ref<Elys::VertexArray> m_VertexArray;
 
-		std::shared_ptr<Elys::Shader> m_BlueShader;
-		std::shared_ptr<Elys::VertexArray> m_SquareVA;
+		Elys::Ref<Elys::Shader> m_FlatColorShader;
+		Elys::Ref<Elys::VertexArray> m_SquareVA;
 
 		Elys::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
@@ -190,6 +200,8 @@ class ExampleLayer : public Elys::Layer
 
 		float m_CameraRotation = 0.0f;
 		float m_CameraRotationSpeed = 180.0f;
+
+		glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public Elys::Application
