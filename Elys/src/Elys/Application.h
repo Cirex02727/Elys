@@ -11,6 +11,11 @@
 
 #include "Elys/Renderer/Shader.h"
 #include <Elys/Renderer/Buffer.h>
+#include <Elys/Renderer/VertexArray.h>
+
+#include "Elys/Core/Timestep.h"
+
+#include "Elys/Renderer/OrthographicCamera.h"
 
 namespace Elys {
 
@@ -34,15 +39,12 @@ namespace Elys {
 		private:
 			bool OnWindowClose(WindowCloseEvent& e);
 
+		private:
 			std::unique_ptr<Window> m_Window;
 			ImGuiLayer* m_ImGuiLayer;
 			bool m_Running = true;
 			LayerStack m_LayerStack;
-
-			unsigned int m_VertexArray;
-			std::unique_ptr<Shader> m_Shader;
-			std::unique_ptr<VertexBuffer> m_VertexBuffer;
-			std::unique_ptr<IndexBuffer> m_IndexBuffer;
+			float m_LastFrameTime = 0.0f;
 
 		private:
 			static Application* s_Instance;

@@ -1350,6 +1350,13 @@
     <ClInclude Include="src\Elys\Renderer\Buffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Elys\Renderer\Renderer.h" />
+    <ClInclude Include="src\Elys\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Elys\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Elys\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Elys\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Application.cpp">
@@ -1384,5 +1391,11 @@
     <ClCompile Include="src\Elys\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Elys\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Elys\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Elys\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\Elys\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Elys\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
