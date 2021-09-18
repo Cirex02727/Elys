@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Elys/vendor/GLFW/include"
 IncludeDir["Glad"] = "Elys/vendor/Glad/include"
 IncludeDir["ImGui"] = "Elys/vendor/imgui"
 IncludeDir["glm"] = "Elys/vendor/glm"
+IncludeDir["stb_image"] = "Elys/vendor/stb_image"
 
 include "Elys/vendor/GLFW"
 include "Elys/vendor/Glad"
@@ -39,6 +40,8 @@ project "Elys"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -55,7 +58,8 @@ project "Elys"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}",
 	}
 
 	links 

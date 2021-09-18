@@ -7,14 +7,23 @@
     <Filter Include="src\Elys">
       <UniqueIdentifier>{99E01DCF-85AD-78DA-AEC6-66829AF2AD68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Elys\Core">
+      <UniqueIdentifier>{914C28B5-FD0C-A4EB-C647-ED6832C7E8C7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Elys\Events">
       <UniqueIdentifier>{5DC68FA5-C951-FD69-D262-805E3E6D596A}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Elys\ImGui">
       <UniqueIdentifier>{83A49C5A-6F72-9060-5806-018744736CC5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Elys\Renderer">
+      <UniqueIdentifier>{5FE0953F-CBF6-93D5-146E-1FF780C3645D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -40,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Elys.h">
@@ -50,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="src\Elys\Core.h">
       <Filter>src\Elys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\Timestep.h">
+      <Filter>src\Elys\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\EntryPoint.h">
       <Filter>src\Elys</Filter>
@@ -87,8 +102,53 @@
     <ClInclude Include="src\Elys\MouseButtonCodes.h">
       <Filter>src\Elys</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\Buffer.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\GraphicsContext.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\RenderCommand.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\Renderer.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\RendererAPI.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\Shader.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\Texture.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\VertexArray.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Window.h">
       <Filter>src\Elys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1344,20 +1404,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Elys\Renderer\Shader.h" />
-    <ClInclude Include="src\Elys\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Elys\Renderer\Renderer.h" />
-    <ClInclude Include="src\Elys\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Elys\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Elys\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Elys\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Application.cpp">
@@ -1378,6 +1427,48 @@
     <ClCompile Include="src\Elys\Log.cpp">
       <Filter>src\Elys</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\Buffer.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\RenderCommand.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\Renderer.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\RendererAPI.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\Shader.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\Texture.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\VertexArray.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1387,17 +1478,8 @@
     <ClCompile Include="src\elyspch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Elys\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Elys\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Elys\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Elys\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Elys\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Elys\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Elys\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

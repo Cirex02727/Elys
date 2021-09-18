@@ -18,12 +18,12 @@
 #include "Elys/Renderer/Renderer.h"
 #include "Elys/Renderer/RenderCommand.h"
 
-#include "Elys/Renderer/Shader.h"
 #include "Elys/Renderer/Buffer.h"
+#include "Elys/Renderer/Shader.h"
+#include "Elys/Renderer/Texture.h"
 #include "Elys/Renderer/VertexArray.h"
 
 #include "Elys/Renderer/OrthographicCamera.h"
-#include "Elys/EntryPoint.h"
 // -----------------------------------
 
 

@@ -39,17 +39,18 @@ class ExampleLayer : public Elys::Layer
 
 			m_SquareVA.reset(Elys::VertexArray::Create());
 
-			float squareVertices[3 * 7] = {
-				-0.5f, -0.5f, 0.0f,
-				 0.5f, -0.5f, 0.0f,
-				 0.5f,  0.5f, 0.0f,
-				-0.5f,  0.5f, 0.0f
+			float squareVertices[5 * 4] = {
+				-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+				 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+				 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+				-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
 			};
 
 			Elys::Ref<Elys::VertexBuffer> squareVB;
 			squareVB.reset(Elys::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 			squareVB->SetLayout({
-				{ Elys::ShaderDataType::Float3, "a_Position" }
+				{ Elys::ShaderDataType::Float3, "a_Position" },
+				{ Elys::ShaderDataType::Float2, "a_TexCoord" },
 			});
 			m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -94,7 +95,6 @@ class ExampleLayer : public Elys::Layer
 
 			m_Shader.reset(Elys::Shader::Create(vertexSrc, fragmentSrc));
 
-
 			std::string flatColorVertexSrc = R"(
 				#version 330 core
 				
@@ -128,6 +128,14 @@ class ExampleLayer : public Elys::Layer
 			)";
 
 			m_FlatColorShader.reset(Elys::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+
+			m_TextureShader.reset(Elys::Shader::Create("assets/shaders/Texture.glsl"));
+
+			m_Texture = Elys::Texture2D::Create("assets/textures/Checkerboard.png");
+			m_ChernoLogoTexture = Elys::Texture2D::Create("assets/textures/ChernoLogo.png");
+
+			std::dynamic_pointer_cast<Elys::OpenGLShader>(m_TextureShader)->Bind();
+			std::dynamic_pointer_cast<Elys::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 		}
 
 		void OnUpdate(Elys::Timestep ts) override
@@ -170,7 +178,13 @@ class ExampleLayer : public Elys::Layer
 				}
 			}
 
-			Elys::Renderer::Submit(m_Shader, m_VertexArray);
+			m_Texture->Bind(0);
+			Elys::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			m_ChernoLogoTexture->Bind(0);
+			Elys::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+			// Triangle
+			//Elys::Renderer::Submit(m_Shader, m_VertexArray);
 
 			Elys::Renderer::EndScene();
 		}
@@ -191,8 +205,10 @@ class ExampleLayer : public Elys::Layer
 		Elys::Ref<Elys::Shader> m_Shader;
 		Elys::Ref<Elys::VertexArray> m_VertexArray;
 
-		Elys::Ref<Elys::Shader> m_FlatColorShader;
+		Elys::Ref<Elys::Shader> m_FlatColorShader, m_TextureShader;
 		Elys::Ref<Elys::VertexArray> m_SquareVA;
+
+		Elys::Ref<Elys::Texture2D> m_Texture, m_ChernoLogoTexture;
 
 		Elys::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
