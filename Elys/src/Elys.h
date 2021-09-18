@@ -12,6 +12,8 @@
 #include "Elys/KeyCodes.h"
 #include "Elys/MouseButtonCodes.h"
 
+#include "Elys/OrthographicCameraController.h"
+
 #include "Elys/ImGui/ImGuiLayer.h"
 
 // ---Renderer------------------------
