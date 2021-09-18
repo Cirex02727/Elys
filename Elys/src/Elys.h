@@ -18,6 +18,7 @@
 
 // ---Renderer------------------------
 #include "Elys/Renderer/Renderer.h"
+#include "Elys/Renderer/Renderer2D.h"
 #include "Elys/Renderer/RenderCommand.h"
 
 #include "Elys/Renderer/Buffer.h"

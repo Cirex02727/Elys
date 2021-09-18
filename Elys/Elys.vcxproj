@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Elys\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Elys.h" />
     <ClInclude Include="src\Elys\Core\Application.h" />
     <ClInclude Include="src\Elys\Core\Core.h" />
@@ -594,6 +595,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Elys\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Elys\Core\Application.cpp" />
     <ClCompile Include="src\Elys\Core\Layer.cpp" />
     <ClCompile Include="src\Elys\Core\LayerStack.cpp" />

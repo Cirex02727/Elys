@@ -12,28 +12,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_SquareVA = Elys::VertexArray::Create();
-
-	float squareVertices[3 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f,
-	};
-
-	Elys::Ref<Elys::VertexBuffer> squareVB;
-	squareVB.reset(Elys::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-	squareVB->SetLayout({
-		{ Elys::ShaderDataType::Float3, "a_Position" }
-	});
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t sqareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-	Elys::Ref<Elys::IndexBuffer> squareIB;
-	squareIB.reset(Elys::IndexBuffer::Create(sqareIndices, sizeof(sqareIndices) / sizeof(uint32_t)));
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = Elys::Shader::Create("assets/shaders/FlatColor.glsl");
+	
 }
 
 void Sandbox2D::OnDetach() {}
@@ -47,16 +26,15 @@ void Sandbox2D::OnUpdate(Elys::Timestep ts)
 	Elys::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	Elys::RenderCommand::Clear();
 
-	Elys::Renderer::BeginScene(m_CameraController.GetCamera());
+	Elys::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+	Elys::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 
-	std::dynamic_pointer_cast<Elys::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Elys::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
+	Elys::Renderer2D::EndScene();
 
-	Elys::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-	Elys::Renderer::EndScene();
+	// TODO: Add these functions - Shader::SetMat4, Shader::SetFloat4
+	// std::dynamic_pointer_cast<Elys::OpenGLShader>(m_FlatColorShader)->Bind();
+	// std::dynamic_pointer_cast<Elys::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void Sandbox2D::OnImGuiRender()
