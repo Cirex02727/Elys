@@ -2,17 +2,17 @@
 
 // For use by Elys applications
 
-#include "Elys/Application.h"
-#include "Elys/Layer.h"
-#include "Elys/Log.h"
+#include "Elys/Core/Application.h"
+#include "Elys/Core/Layer.h"
+#include "Elys/Core/Log.h"
 
 #include "Elys/Core/Timestep.h"
 
-#include "Elys/Input.h"
-#include "Elys/KeyCodes.h"
-#include "Elys/MouseButtonCodes.h"
+#include "Elys/Core/Input.h"
+#include "Elys/Core/KeyCodes.h"
+#include "Elys/Core/MouseButtonCodes.h"
 
-#include "Elys/OrthographicCameraController.h"
+#include "Elys/Renderer/OrthographicCameraController.h"
 
 #include "Elys/ImGui/ImGuiLayer.h"
 
@@ -30,5 +30,5 @@
 
 
 // ---Entry Point---------------------
-#include "Elys/EntryPoint.h"
+#include "Elys/Core/EntryPoint.h"
 // -----------------------------------

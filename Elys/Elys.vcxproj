@@ -141,32 +141,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Elys.h" />
-    <ClInclude Include="src\Elys\Application.h" />
-    <ClInclude Include="src\Elys\Core.h" />
+    <ClInclude Include="src\Elys\Core\Application.h" />
+    <ClInclude Include="src\Elys\Core\Core.h" />
+    <ClInclude Include="src\Elys\Core\EntryPoint.h" />
+    <ClInclude Include="src\Elys\Core\Input.h" />
+    <ClInclude Include="src\Elys\Core\KeyCodes.h" />
+    <ClInclude Include="src\Elys\Core\Layer.h" />
+    <ClInclude Include="src\Elys\Core\LayerStack.h" />
+    <ClInclude Include="src\Elys\Core\Log.h" />
+    <ClInclude Include="src\Elys\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Elys\Core\Timestep.h" />
-    <ClInclude Include="src\Elys\EntryPoint.h" />
+    <ClInclude Include="src\Elys\Core\Window.h" />
     <ClInclude Include="src\Elys\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Elys\Events\Event.h" />
     <ClInclude Include="src\Elys\Events\KeyEvent.h" />
     <ClInclude Include="src\Elys\Events\MouseEvent.h" />
     <ClInclude Include="src\Elys\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Elys\Input.h" />
-    <ClInclude Include="src\Elys\KeyCodes.h" />
-    <ClInclude Include="src\Elys\Layer.h" />
-    <ClInclude Include="src\Elys\LayerStack.h" />
-    <ClInclude Include="src\Elys\Log.h" />
-    <ClInclude Include="src\Elys\MouseButtonCodes.h" />
-    <ClInclude Include="src\Elys\OrthographicCameraController.h" />
     <ClInclude Include="src\Elys\Renderer\Buffer.h" />
     <ClInclude Include="src\Elys\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Elys\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Elys\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Elys\Renderer\Renderer.h" />
     <ClInclude Include="src\Elys\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Elys\Renderer\Shader.h" />
     <ClInclude Include="src\Elys\Renderer\Texture.h" />
     <ClInclude Include="src\Elys\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Elys\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -594,15 +594,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Elys\Application.cpp" />
+    <ClCompile Include="src\Elys\Core\Application.cpp" />
+    <ClCompile Include="src\Elys\Core\Layer.cpp" />
+    <ClCompile Include="src\Elys\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Elys\Core\Log.cpp" />
     <ClCompile Include="src\Elys\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Elys\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Elys\Layer.cpp" />
-    <ClCompile Include="src\Elys\LayerStack.cpp" />
-    <ClCompile Include="src\Elys\Log.cpp" />
-    <ClCompile Include="src\Elys\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Elys\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Elys\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Elys\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Elys\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Elys\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Elys\Renderer\RendererAPI.cpp" />

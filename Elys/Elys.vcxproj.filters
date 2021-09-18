@@ -57,17 +57,38 @@
     <ClInclude Include="src\Elys.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Application.h">
-      <Filter>src\Elys</Filter>
+    <ClInclude Include="src\Elys\Core\Application.h">
+      <Filter>src\Elys\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Core.h">
-      <Filter>src\Elys</Filter>
+    <ClInclude Include="src\Elys\Core\Core.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\EntryPoint.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\Input.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\KeyCodes.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\Layer.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\LayerStack.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\Log.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Core\MouseButtonCodes.h">
+      <Filter>src\Elys\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Core\Timestep.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\EntryPoint.h">
-      <Filter>src\Elys</Filter>
+    <ClInclude Include="src\Elys\Core\Window.h">
+      <Filter>src\Elys\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Events\ApplicationEvent.h">
       <Filter>src\Elys\Events</Filter>
@@ -84,24 +105,6 @@
     <ClInclude Include="src\Elys\ImGui\ImGuiLayer.h">
       <Filter>src\Elys\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Input.h">
-      <Filter>src\Elys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Elys\KeyCodes.h">
-      <Filter>src\Elys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Elys\Layer.h">
-      <Filter>src\Elys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Elys\LayerStack.h">
-      <Filter>src\Elys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Elys\Log.h">
-      <Filter>src\Elys</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Elys\MouseButtonCodes.h">
-      <Filter>src\Elys</Filter>
-    </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Buffer.h">
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
@@ -109,6 +112,9 @@
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\OrthographicCameraController.h">
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\VertexArray.h">
       <Filter>src\Elys\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Elys\Window.h">
-      <Filter>src\Elys</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1407,11 +1410,19 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Elys\Application.cpp">
-      <Filter>src\Elys</Filter>
+    <ClCompile Include="src\Elys\Core\Application.cpp">
+      <Filter>src\Elys\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Core\Layer.cpp">
+      <Filter>src\Elys\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Core\LayerStack.cpp">
+      <Filter>src\Elys\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Core\Log.cpp">
+      <Filter>src\Elys\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\ImGui\ImGuiBuild.cpp">
       <Filter>src\Elys\ImGui</Filter>
@@ -1419,19 +1430,13 @@
     <ClCompile Include="src\Elys\ImGui\ImGuiLayer.cpp">
       <Filter>src\Elys\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Elys\Layer.cpp">
-      <Filter>src\Elys</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Elys\LayerStack.cpp">
-      <Filter>src\Elys</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Elys\Log.cpp">
-      <Filter>src\Elys</Filter>
-    </ClCompile>
     <ClCompile Include="src\Elys\Renderer\Buffer.cpp">
       <Filter>src\Elys\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Elys\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Renderer\RenderCommand.cpp">
@@ -1482,6 +1487,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Elys\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

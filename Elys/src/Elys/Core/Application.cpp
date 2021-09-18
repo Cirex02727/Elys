@@ -1,7 +1,7 @@
 #include "elyspch.h"
 #include "Application.h"
 
-#include "Elys/Log.h"
+#include "Elys/Core/Log.h"
 
 #include "Elys/Renderer/Renderer.h"
 

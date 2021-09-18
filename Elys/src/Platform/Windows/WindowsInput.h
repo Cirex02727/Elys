@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Elys/Input.h"
+#include "Elys/Core/Input.h"
 
 namespace Elys {
 

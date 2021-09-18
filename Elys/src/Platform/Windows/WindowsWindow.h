@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Elys/Window.h"
+#include "Elys/Core/Window.h"
 #include "Elys/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

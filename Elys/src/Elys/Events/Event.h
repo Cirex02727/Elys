@@ -1,7 +1,7 @@
 #pragma once
 
 #include "elyspch.h"
-#include "Elys/Core.h"
+#include "Elys/Core/Core.h"
 
 namespace Elys {
 

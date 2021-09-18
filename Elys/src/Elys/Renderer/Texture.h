@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Elys/Core.h"
+#include "Elys/Core/Core.h"
 
 namespace Elys {
 

@@ -1,8 +1,8 @@
 #include "elyspch.h"
 #include "OrthographicCameraController.h"
 
-#include "Elys/Input.h"
-#include "Elys/KeyCodes.h"
+#include "Elys/Core/Input.h"
+#include "Elys/Core/KeyCodes.h"
 
 namespace Elys {
 

@@ -2,7 +2,7 @@
 
 #include "elyspch.h"
 
-#include "Elys/Core.h"
+#include "Elys/Core/Core.h"
 #include "Elys/Events/Event.h"
 
 namespace Elys {
