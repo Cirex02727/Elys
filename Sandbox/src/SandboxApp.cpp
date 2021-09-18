@@ -93,7 +93,7 @@ class ExampleLayer : public Elys::Layer
 				}
 			)";
 
-			m_Shader.reset(Elys::Shader::Create(vertexSrc, fragmentSrc));
+			m_Shader= Elys::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 			std::string flatColorVertexSrc = R"(
 				#version 330 core
@@ -127,15 +127,15 @@ class ExampleLayer : public Elys::Layer
 				}
 			)";
 
-			m_FlatColorShader.reset(Elys::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+			m_FlatColorShader = Elys::Shader::Create("FloatColor", flatColorVertexSrc, flatColorFragmentSrc);
 
-			m_TextureShader.reset(Elys::Shader::Create("assets/shaders/Texture.glsl"));
+			auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 			m_Texture = Elys::Texture2D::Create("assets/textures/Checkerboard.png");
 			m_ChernoLogoTexture = Elys::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-			std::dynamic_pointer_cast<Elys::OpenGLShader>(m_TextureShader)->Bind();
-			std::dynamic_pointer_cast<Elys::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+			std::dynamic_pointer_cast<Elys::OpenGLShader>(textureShader)->Bind();
+			std::dynamic_pointer_cast<Elys::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 		}
 
 		void OnUpdate(Elys::Timestep ts) override
@@ -178,10 +178,12 @@ class ExampleLayer : public Elys::Layer
 				}
 			}
 
+			auto textureShader = m_ShaderLibrary.Get("Texture");
+
 			m_Texture->Bind(0);
-			Elys::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			Elys::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 			m_ChernoLogoTexture->Bind(0);
-			Elys::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			Elys::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 			// Triangle
 			//Elys::Renderer::Submit(m_Shader, m_VertexArray);
@@ -202,10 +204,11 @@ class ExampleLayer : public Elys::Layer
 		}
 
 	private:
+		Elys::ShaderLibrary m_ShaderLibrary;
 		Elys::Ref<Elys::Shader> m_Shader;
 		Elys::Ref<Elys::VertexArray> m_VertexArray;
 
-		Elys::Ref<Elys::Shader> m_FlatColorShader, m_TextureShader;
+		Elys::Ref<Elys::Shader> m_FlatColorShader;
 		Elys::Ref<Elys::VertexArray> m_SquareVA;
 
 		Elys::Ref<Elys::Texture2D> m_Texture, m_ChernoLogoTexture;
