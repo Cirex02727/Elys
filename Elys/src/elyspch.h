@@ -15,6 +15,8 @@
 
 #include "Elys/Core/Log.h"
 
+#include "Elys/Profiler/Instrumentor.h"
+
 #ifdef ELYS_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

@@ -7,13 +7,18 @@ extern Elys::Application* Elys::CreateApplication();
 int main(int argc, char** argv)
 {
 	Elys::Log::Init();
-	ELYS_CORE_WARN("Initialized Log!");
-	int a = 5;
-	ELYS_INFO("Hello! Var={0}", a);
 
+	ELYS_PROFILE_BEGIN_SESSION("Startup", "ElysProfile-Startup.json");
 	auto app = Elys::CreateApplication();
+	ELYS_PROFILE_END_SESSION();
+
+	ELYS_PROFILE_BEGIN_SESSION("Startup", "ElysProfile-Runtime.json");
 	app->Run();
+	ELYS_PROFILE_END_SESSION();
+
+	ELYS_PROFILE_BEGIN_SESSION("Startup", "ElysProfile-Shutdown.json");
 	delete app;
+	ELYS_PROFILE_END_SESSION();
 }
 
 #endif

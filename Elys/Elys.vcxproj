@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Elys\Profiler\Instrumentor.h" />
     <ClInclude Include="src\Elys\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Elys.h" />
     <ClInclude Include="src\Elys\Core\Application.h" />
