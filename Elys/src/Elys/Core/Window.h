@@ -16,9 +16,7 @@ namespace Elys {
 		WindowProps(const std::string& title = "Elys Engine",
 			        unsigned int width = 1280,
 			        unsigned int height = 720)
-			: Title(title), Width(width), Height(height)
-		{
-		}
+			: Title(title), Width(width), Height(height) {}
 	};
 
 	// Interface representing a desktop system based Window
@@ -41,7 +39,7 @@ namespace Elys {
 
 			virtual void* GetNativeWindow() const = 0;
 
-			static Window* Create(const WindowProps& props = WindowProps());
+			static Scope<Window> Create(const WindowProps& props = WindowProps());
 	};
 
 }

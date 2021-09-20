@@ -14,6 +14,8 @@ namespace Elys {
 
 	void OpenGLContext::Init()
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		ELYS_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -35,6 +37,8 @@ namespace Elys {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

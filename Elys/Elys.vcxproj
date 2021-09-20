@@ -596,6 +596,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Elys\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Elys\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Elys\Core\Application.cpp" />
     <ClCompile Include="src\Elys\Core\Layer.cpp" />

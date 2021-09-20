@@ -28,6 +28,8 @@ namespace Elys {
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
@@ -38,16 +40,22 @@ namespace Elys {
 
 	void OpenGLVertexArray::Bind() const
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 	}
 
 	void OpenGLVertexArray::Unbind() const
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		ELYS_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!");
 
 		glBindVertexArray(m_RendererID);
@@ -73,6 +81,8 @@ namespace Elys {
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
 	{
+		ELYS_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();
 
