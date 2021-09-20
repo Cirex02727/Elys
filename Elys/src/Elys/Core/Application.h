@@ -1,21 +1,17 @@
 #pragma once
 
-#include "Core.h"
+#include "Elys/Core/Core.h"
 
-#include "Window.h"
+#include "Elys/Core/Window.h"
 #include "Elys/Core/LayerStack.h"
 #include "Elys/Events/Event.h"
 #include "Elys/Events/ApplicationEvent.h"
 
-#include "Elys/ImGui/ImGuiLayer.h"
-
-#include "Elys/Renderer/Shader.h"
-#include <Elys/Renderer/Buffer.h>
-#include <Elys/Renderer/VertexArray.h>
-
 #include "Elys/Core/Timestep.h"
 
-#include "Elys/Renderer/OrthographicCamera.h"
+#include "Elys/ImGui/ImGuiLayer.h"
+
+int main(int argc, char** argv);
 
 namespace Elys {
 
@@ -24,8 +20,6 @@ namespace Elys {
 		public:
 			Application();
 			virtual ~Application();
-
-			void Run();
 
 			void OnEvent(Event& e);
 
@@ -37,6 +31,8 @@ namespace Elys {
 			inline static Application& Get() { return *s_Instance; }
 
 		private:
+			void Run();
+
 			bool OnWindowClose(WindowCloseEvent& e);
 			bool OnWindowResize(WindowResizeEvent& e);
 
@@ -50,6 +46,7 @@ namespace Elys {
 
 		private:
 			static Application* s_Instance;
+			friend int ::main(int argc, char** argv);
 	};
 
 	// To be defined in CLIENT

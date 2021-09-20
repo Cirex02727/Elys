@@ -26,11 +26,11 @@ namespace Elys {
 #define ELYS_CORE_INFO(...)     ::Elys::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define ELYS_CORE_WARN(...)     ::Elys::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define ELYS_CORE_ERROR(...)    ::Elys::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define ELYS_CORE_FATAL(...)    ::Elys::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define ELYS_CORE_CRITICAL(...) ::Elys::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define ELYS_TRACE(...)	        ::Elys::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define ELYS_INFO(...)	        ::Elys::Log::GetClientLogger()->info(__VA_ARGS__)
 #define ELYS_WARN(...)	        ::Elys::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define ELYS_ERROR(...)	        ::Elys::Log::GetClientLogger()->error(__VA_ARGS__)
-#define ELYS_FATAL(...)	        ::Elys::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define ELYS_CRITICAL(...)	    ::Elys::Log::GetClientLogger()->critical(__VA_ARGS__)

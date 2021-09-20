@@ -1,96 +1,100 @@
 #pragma once
 
 #include "Event.h"
+#include "Elys/Core/Input.h"
 
 namespace Elys {
 
 	class ELYS_API MouseMovedEvent : public Event
 	{
-	public:
-		MouseMovedEvent(float x, float y)
-			: m_MouseX(x), m_MouseY(y) {}
+		public:
+			MouseMovedEvent(float x, float y)
+				: m_MouseX(x), m_MouseY(y) {}
 
-		inline float GetX() const { return m_MouseX; }
-		inline float GetY() const { return m_MouseY; }
+			inline float GetX() const { return m_MouseX; }
+			inline float GetY() const { return m_MouseY; }
 
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
-			return ss.str();
-		}
+			std::string ToString() const override
+			{
+				std::stringstream ss;
+				ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
+				return ss.str();
+			}
 
-		EVENT_CLASS_TYPE(MouseMoved)
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-	private:
-		float m_MouseX, m_MouseY;
+			EVENT_CLASS_TYPE(MouseMoved)
+			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+
+		private:
+			float m_MouseX, m_MouseY;
 	};
 
 	class ELYS_API MouseScrolledEvent : public Event
 	{
-	public:
-		MouseScrolledEvent(float xOffset, float yOffset)
-			: m_XOffset(xOffset), m_YOffset(yOffset) {}
+		public:
+			MouseScrolledEvent(float xOffset, float yOffset)
+				: m_XOffset(xOffset), m_YOffset(yOffset) {}
 
-		inline float GetXOffset() const { return m_XOffset; }
-		inline float GetYOffset() const { return m_YOffset; }
+			inline float GetXOffset() const { return m_XOffset; }
+			inline float GetYOffset() const { return m_YOffset; }
 
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseScrolledEvent: " << GetXOffset() << ", " << GetYOffset();
-			return ss.str();
-		}
+			std::string ToString() const override
+			{
+				std::stringstream ss;
+				ss << "MouseScrolledEvent: " << GetXOffset() << ", " << GetYOffset();
+				return ss.str();
+			}
 
-		EVENT_CLASS_TYPE(MouseScrolled)
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-	private:
-		float m_XOffset, m_YOffset;
+			EVENT_CLASS_TYPE(MouseScrolled)
+			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+
+		private:
+			float m_XOffset, m_YOffset;
 	};
 
 	class ELYS_API MouseButtonEvent : public Event
 	{
-	public:
-		inline int GetMouseButton() const { return m_Button; }
+		public:
+			inline MouseCode GetMouseButton() const { return m_Button; }
 
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-	protected:
-		MouseButtonEvent(int button)
-			: m_Button(button) {}
+			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
-		int m_Button;
+		protected:
+			MouseButtonEvent(MouseCode button)
+				: m_Button(button) {}
+
+			MouseCode m_Button;
 	};
 
 	class ELYS_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
-	public:
-		MouseButtonPressedEvent(int button)
-			: MouseButtonEvent(button) {}
+		public:
+			MouseButtonPressedEvent(MouseCode button)
+				: MouseButtonEvent(button) {}
 
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_Button;
-			return ss.str();
-		}
+			std::string ToString() const override
+			{
+				std::stringstream ss;
+				ss << "MouseButtonPressedEvent: " << m_Button;
+				return ss.str();
+			}
 
-		EVENT_CLASS_TYPE(MouseButtonPressed)
+			EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
 	class ELYS_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
-	public:
-		MouseButtonReleasedEvent(int button)
-			: MouseButtonEvent(button) {}
+		public:
+			MouseButtonReleasedEvent(MouseCode button)
+				: MouseButtonEvent(button) {}
 
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_Button;
-			return ss.str();
-		}
+			std::string ToString() const override
+			{
+				std::stringstream ss;
+				ss << "MouseButtonReleasedEvent: " << m_Button;
+				return ss.str();
+			}
 
-		EVENT_CLASS_TYPE(MouseButtonReleased)
+			EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
 
 }

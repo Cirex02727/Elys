@@ -81,7 +81,7 @@
     <ClInclude Include="src\Elys\Core\Log.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Core\MouseButtonCodes.h">
+    <ClInclude Include="src\Elys\Core\MouseCodes.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Core\Timestep.h">
@@ -1491,5 +1491,7 @@
     </ClCompile>
     <ClCompile Include="src\Elys\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Elys\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\Elys\Core\Input.cpp" />
+    <ClCompile Include="src\Elys\Core\Window.cpp" />
   </ItemGroup>
 </Project>

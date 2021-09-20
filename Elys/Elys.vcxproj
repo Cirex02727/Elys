@@ -151,7 +151,7 @@
     <ClInclude Include="src\Elys\Core\Layer.h" />
     <ClInclude Include="src\Elys\Core\LayerStack.h" />
     <ClInclude Include="src\Elys\Core\Log.h" />
-    <ClInclude Include="src\Elys\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Elys\Core\MouseCodes.h" />
     <ClInclude Include="src\Elys\Core\Timestep.h" />
     <ClInclude Include="src\Elys\Core\Window.h" />
     <ClInclude Include="src\Elys\Events\ApplicationEvent.h" />
@@ -596,6 +596,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Elys\Core\Input.cpp" />
+    <ClCompile Include="src\Elys\Core\Window.cpp" />
     <ClCompile Include="src\Elys\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Elys\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Elys\Core\Application.cpp" />

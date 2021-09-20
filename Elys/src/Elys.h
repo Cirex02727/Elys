@@ -10,7 +10,7 @@
 
 #include "Elys/Core/Input.h"
 #include "Elys/Core/KeyCodes.h"
-#include "Elys/Core/MouseButtonCodes.h"
+#include "Elys/Core/MouseCodes.h"
 
 #include "Elys/Renderer/OrthographicCameraController.h"
 
