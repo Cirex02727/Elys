@@ -60,12 +60,22 @@
 #endif // End of DLL support
 
 #ifdef ELYS_DEBUG
+	#if defined(ELYS_PLATFORM_WINDOWS)
+		#define ELYS_DEBUGBREAK() __debugbreak()
+	#elif defined(ELYS_PLATFORM_LINUX)
+		#include <signal.h>
+		#define ELYS_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
 	#define ELYS_ENABLE_ASSERTS
+#else
+#define ELYS_DEBUGBREAK()
 #endif
 
 #ifdef ELYS_ENABLE_ASSERTS
-	#define ELYS_ASSERT(x, ...) { if(!(x)) { ELYS_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define ELYS_CORE_ASSERT(x, ...) { if(!(x)) { ELYS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define ELYS_ASSERT(x, ...) { if(!(x)) { ELYS_ERROR("Assertion Failed: {0}", __VA_ARGS__); ELYS_DEBUGBREAK(); } }
+	#define ELYS_CORE_ASSERT(x, ...) { if(!(x)) { ELYS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); ELYS_DEBUGBREAK(); } }
 #else
 	#define ELYS_ASSERT(x, ...)
 	#define ELYS_CORE_ASSERT(x, ...)

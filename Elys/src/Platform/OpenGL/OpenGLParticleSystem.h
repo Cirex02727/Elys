@@ -3,14 +3,12 @@
 #include "Elys/Renderer/ParticleSystem.h"
 #include "Elys/Renderer/Shader.h"
 
-#include <glad/glad.h>
-
 namespace Elys {
 
 	class OpenGLParticleSystem : public ParticleSystem
 	{
 		public:
-			OpenGLParticleSystem(uint32_t pollSize, uint32_t renderIndex);
+			OpenGLParticleSystem(uint32_t pollSize);
 
 			virtual void OnUpdate(Timestep ts) override;
 			virtual void OnRender(OrthographicCamera& camera) override;
@@ -36,9 +34,5 @@ namespace Elys {
 			};
 
 			std::vector<Particle> m_ParticlePool;
-
-			GLuint m_QuadVA = 0;
-			Ref<Shader> m_ParticleShader;
-			GLint m_ParticleShaderViewProj, m_ParticleShaderTransform, m_ParticleShaderColor;
 	};
 }

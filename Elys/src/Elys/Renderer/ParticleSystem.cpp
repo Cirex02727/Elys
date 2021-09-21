@@ -10,7 +10,7 @@
 
 namespace Elys {
 
-	Ref<ParticleSystem> ParticleSystem::Create(uint32_t pollSize, uint32_t renderIndex)
+	Ref<ParticleSystem> ParticleSystem::Create(uint32_t pollSize)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -19,7 +19,7 @@ namespace Elys {
 				return nullptr;
 
 			case RendererAPI::API::OpenGL:
-				return CreateRef<OpenGLParticleSystem>(pollSize, renderIndex);
+				return CreateRef<OpenGLParticleSystem>(pollSize);
 		}
 
 		ELYS_CORE_ASSERT(false, "Unknown RendererAPI!");

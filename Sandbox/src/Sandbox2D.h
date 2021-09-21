@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include <Platform/OpenGL/OpenGLParticleSystem.h>
+
 class Sandbox2D : public Elys::Layer
 {
 	public:
@@ -27,6 +29,9 @@ class Sandbox2D : public Elys::Layer
 		Elys::Ref<Elys::Texture2D> m_CheckerboardTexture;
 
 		std::vector<Elys::QuadVertex> m_Grid;
+
+		Elys::ParticleProp m_Particle;
+		Elys::Ref<Elys::ParticleSystem> m_ParticleSystem;
 
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };

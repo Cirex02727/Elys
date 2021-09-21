@@ -1,5 +1,5 @@
 workspace "Elys"
-	architecture "x86_x64"
+	architecture "x86_64"
 	startproject "Sandbox"
 
 	configurations
@@ -7,6 +7,11 @@ workspace "Elys"
 		"Debug",
 		"Release",
 		"Dist"
+	}
+
+	flags
+	{
+		"MultiProcessorCompile"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -51,7 +56,8 @@ project "Elys"
 
 	defines
 	{
-		"_CRT_SECURE_NO_WARNINGS"
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
 	}
 
 	includedirs
@@ -75,13 +81,6 @@ project "Elys"
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines
-		{
-			"ELYS_PLATFORM_WINDOWS",
-			"ELYS_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
-		}
 
 	filter "configurations:Debug"
 		defines "ELYS_DEBUG"
@@ -129,11 +128,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		systemversion "latest"
-
-		defines
-		{
-			"ELYS_PLATFORM_WINDOWS"
-		}
 
 	filter "configurations:Debug"
 		defines "ELYS_DEBUG"

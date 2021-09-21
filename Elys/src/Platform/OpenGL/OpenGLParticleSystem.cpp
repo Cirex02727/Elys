@@ -2,8 +2,11 @@
 #include "OpenGLParticleSystem.h"
 
 #include "Elys/Utils/Random.h"
+#include "Elys/Renderer/Renderer2D.h"
 
 #include <glm/gtc/type_ptr.hpp>
+
+#include <glad/glad.h>
 
 #include <glm/gtc/constants.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -11,8 +14,7 @@
 
 namespace Elys {
 
-	OpenGLParticleSystem::OpenGLParticleSystem(uint32_t pollSize, uint32_t renderIndex)
-		: m_PoolIndex(renderIndex)
+	OpenGLParticleSystem::OpenGLParticleSystem(uint32_t pollSize)
 	{
 		m_ParticlePool.resize(pollSize);
 	}
@@ -62,43 +64,7 @@ namespace Elys {
 
 	void OpenGLParticleSystem::OnRender(OrthographicCamera& camera)
 	{
-		if (!m_QuadVA)
-		{
-			float vertices[] = {
-				-0.5f, -0.5f, 0.0f,
-				 0.5f, -0.5f, 0.0f,
-				 0.5f,  0.5f, 0.0f,
-				-0.5f,  0.5f, 0.0f
-			};
-
-			glCreateVertexArrays(1, &m_QuadVA);
-			glBindVertexArray(m_QuadVA);
-
-			GLuint quadVB, quadIB;
-			glCreateBuffers(1, &quadVB);
-			glBindBuffer(GL_ARRAY_BUFFER, quadVB);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-
-			uint32_t indices[] = {
-				0, 1, 2, 2, 3, 0
-			};
-
-			glCreateBuffers(1, &quadIB);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quadIB);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-			m_ParticleShader = Shader::Create("assets/shaders/particle_shader.glsl");
-			m_ParticleShaderViewProj = glGetUniformLocation(intptr_t(m_ParticleShader->GetRef()), "u_ViewProj");
-			m_ParticleShaderTransform = glGetUniformLocation(intptr_t(m_ParticleShader->GetRef()), "u_Transform");
-			m_ParticleShaderColor = glGetUniformLocation(intptr_t(m_ParticleShader->GetRef()), "u_Color");
-		}
-
-		glUseProgram(intptr_t(m_ParticleShader->GetRef()));
-		glUniformMatrix4fv(m_ParticleShaderViewProj, 1, GL_FALSE, glm::value_ptr(camera.GetViewProjectionMatrix()));
-
+		Elys::Renderer2D::BeginScene(camera);
 		for (auto& particle : m_ParticlePool)
 		{
 			if (!particle.Active)
@@ -110,15 +76,8 @@ namespace Elys {
 			color.a *= life;
 
 			float size = glm::lerp(particle.SizeEnd, particle.SizeBegin, life);
-
-			// Render
-			glm::mat4 transform = glm::translate(glm::mat4(1.0f), { particle.Position.x, particle.Position.y, 0.0f })
-				* glm::rotate(glm::mat4(1.0f), particle.Rotation, { 0.0f, 0.0f, 1.0f })
-				* glm::scale(glm::mat4(1.0f), { size, size, 1.0f });
-			glUniformMatrix4fv(m_ParticleShaderTransform, 1, GL_FALSE, glm::value_ptr(transform));
-			glUniform4fv(m_ParticleShaderColor, 1, glm::value_ptr(color));
-			glBindVertexArray(m_QuadVA);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+			Elys::Renderer2D::DrawRotatedQuad(particle.Position, glm::vec2(size), particle.Rotation, color);
 		}
+		Elys::Renderer2D::EndScene();
 	}
 }

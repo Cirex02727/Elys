@@ -22,7 +22,7 @@ namespace Elys {
 
 			virtual void Emit(const ParticleProp& particleProps) = 0;
 
-			static Ref<ParticleSystem> Create(uint32_t pollSize, uint32_t renderIndex);
+			static Ref<ParticleSystem> Create(uint32_t pollSize);
 
 		protected:
 			uint32_t m_PoolIndex = 999;
