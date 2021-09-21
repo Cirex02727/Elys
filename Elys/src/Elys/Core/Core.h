@@ -73,6 +73,8 @@
 
 #define BIT(x) (1 << x)
 
+#define PI (3.14159265358979323846264338327950288)
+
 #define ELYS_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
 namespace Elys {

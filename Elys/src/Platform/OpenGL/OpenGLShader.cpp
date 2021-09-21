@@ -67,7 +67,7 @@ namespace Elys {
 			in.close();
 		}
 		else
-			ELYS_CORE_ERROR("Cloud not open fie '{0}'", filepath);
+			ELYS_CORE_ERROR("Cloud not open file '{0}'", filepath);
 
 		return result;
 	}
@@ -194,6 +194,11 @@ namespace Elys {
 		UploadUniformInt(name, value);
 	}
 
+	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		UploadUniformIntArray(name, values, count);
+	}
+
 	void OpenGLShader::SetFloat(const std::string& name, float value)
 	{
 		ELYS_PROFILE_FUNCTION();
@@ -234,6 +239,12 @@ namespace Elys {
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::UploadUniformIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1iv(location, count, values);
 	}
 
 	void OpenGLShader::UploadUniformFloat(const std::string& name, float value)

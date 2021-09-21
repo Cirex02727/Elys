@@ -2,6 +2,8 @@
 
 #include "Elys.h"
 
+#include <vector>
+
 class Sandbox2D : public Elys::Layer
 {
 	public:
@@ -12,7 +14,7 @@ class Sandbox2D : public Elys::Layer
 		virtual void OnDetach() override;
 
 		void OnUpdate(Elys::Timestep ts) override;
-		virtual void OnImGuiRender() override;
+		virtual void OnImGuiRender(Elys::Timestep ts) override;
 		void OnEvent(Elys::Event& e) override;
 
 	private:
@@ -24,13 +26,7 @@ class Sandbox2D : public Elys::Layer
 
 		Elys::Ref<Elys::Texture2D> m_CheckerboardTexture;
 
-		struct ProfileResult
-		{
-			const char* Name;
-			float Time;
-		};
-
-		std::vector<ProfileResult> m_ProfileResults;
+		std::vector<Elys::QuadVertex> m_Grid;
 
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };

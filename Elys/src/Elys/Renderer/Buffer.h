@@ -74,8 +74,8 @@ namespace Elys {
 				CalculateOffsetAndStride();
 			}
 
-			inline uint32_t GetStride() const { return m_Stride; }
-			inline const std::vector<BufferElement>& GetElements() const { return m_Elements; }
+			uint32_t GetStride() const { return m_Stride; }
+			const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 
 			std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
 			std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
@@ -108,10 +108,13 @@ namespace Elys {
 			virtual void Bind() const = 0;
 			virtual void Unbind() const = 0;
 
+			virtual void SetData(const void* data, uint32_t size) = 0;
+
 			virtual void SetLayout(const BufferLayout& layout) = 0;
 			virtual const BufferLayout& GetLayout() const = 0;
 
-			static VertexBuffer* Create(float* vertices, uint32_t size);
+			static Ref<VertexBuffer> Create(uint32_t size);
+			static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -124,6 +127,6 @@ namespace Elys {
 
 			virtual uint32_t GetCount() const = 0;
 
-			static IndexBuffer* Create(uint32_t* indices, uint32_t count);
+			static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 	};
 }

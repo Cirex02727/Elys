@@ -1412,6 +1412,10 @@
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Elys\Profiler\Instrumentor.h" />
+    <ClInclude Include="src\Elys\Utils\Random.h" />
+    <ClInclude Include="src\Elys\Utils\Utils.h" />
+    <ClInclude Include="src\Elys\Renderer\ParticleSystem.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Core\Application.cpp">
@@ -1493,5 +1497,9 @@
     <ClCompile Include="src\Elys\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Elys\Core\Input.cpp" />
     <ClCompile Include="src\Elys\Core\Window.cpp" />
+    <ClCompile Include="src\Elys\Utils\Random.cpp" />
+    <ClCompile Include="src\Elys\Utils\Utils.cpp" />
+    <ClCompile Include="src\Elys\Renderer\ParticleSystem.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLParticleSystem.cpp" />
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Elys/Core/Log.h"
+#include "Elys/Utils/Random.h"
 
 #include "Elys/Profiler/Instrumentor.h"
 

@@ -47,7 +47,7 @@ namespace Elys {
 			ELYS_PROFILE_SCOPE("glfwInit");
 
 			int success = glfwInit();
-			ELYS_CORE_ASSERT(success, "Could not intialize GLFW!");
+			ELYS_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 

@@ -158,7 +158,7 @@ namespace Elys {
 	};
 }
 
-#define ELYS_PROFILE 1
+#define ELYS_PROFILE 0
 #if ELYS_PROFILE
 	// Resolve which function signature macro will be used. Note that this only
 	// is resolved when the (pre)compiler starts, so the syntax highlighting

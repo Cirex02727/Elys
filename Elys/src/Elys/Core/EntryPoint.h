@@ -7,6 +7,7 @@ extern Elys::Application* Elys::CreateApplication();
 int main(int argc, char** argv)
 {
 	Elys::Log::Init();
+	Elys::Random::Init();
 
 	ELYS_PROFILE_BEGIN_SESSION("Startup", "ElysProfile-Startup.json");
 	auto app = Elys::CreateApplication();

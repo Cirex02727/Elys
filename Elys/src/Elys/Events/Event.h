@@ -1,6 +1,7 @@
 #pragma once
 
 #include "elyspch.h"
+
 #include "Elys/Core/Core.h"
 
 namespace Elys {
@@ -45,7 +46,7 @@ namespace Elys {
 			virtual int GetCategoryFlags() const = 0;
 			virtual std::string ToString() const { return GetName(); }
 
-			inline bool IsInCategory(EventCategory category)
+			bool IsInCategory(EventCategory category)
 			{
 				return GetCategoryFlags() & category;
 			}
@@ -57,9 +58,7 @@ namespace Elys {
 			using EventFn = std::function<bool(T&)>;
 		public:
 			EventDispatcher(Event& event)
-				: m_Event(event)
-			{
-			}
+				: m_Event(event) {}
 
 			template<typename T, typename F>
 			bool Dispatch(const F& func)

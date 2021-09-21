@@ -25,7 +25,7 @@ class ExampleLayer : public Elys::Layer
 			};
 
 			Elys::Ref<Elys::VertexBuffer> m_VertexBuffer;
-			m_VertexBuffer.reset(Elys::VertexBuffer::Create(vertices, sizeof(vertices)));
+			m_VertexBuffer = Elys::VertexBuffer::Create(vertices, sizeof(vertices));
 			Elys::BufferLayout layout = {
 				{ Elys::ShaderDataType::Float3, "a_Position" },
 				{ Elys::ShaderDataType::Float4, "a_Color" },
@@ -36,7 +36,7 @@ class ExampleLayer : public Elys::Layer
 
 			uint32_t indices[3] = { 0, 1, 2 };
 			Elys::Ref<Elys::IndexBuffer> m_IndexBuffer;
-			m_IndexBuffer.reset(Elys::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+			m_IndexBuffer = Elys::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 			m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
 
@@ -50,7 +50,7 @@ class ExampleLayer : public Elys::Layer
 			};
 
 			Elys::Ref<Elys::VertexBuffer> squareVB;
-			squareVB.reset(Elys::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+			squareVB = Elys::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 			squareVB->SetLayout({
 				{ Elys::ShaderDataType::Float3, "a_Position" },
 				{ Elys::ShaderDataType::Float2, "a_TexCoord" },
@@ -59,7 +59,7 @@ class ExampleLayer : public Elys::Layer
 
 			uint32_t sqareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 			Elys::Ref<Elys::IndexBuffer> squareIB;
-			squareIB.reset(Elys::IndexBuffer::Create(sqareIndices, sizeof(sqareIndices) / sizeof(uint32_t)));
+			squareIB = Elys::IndexBuffer::Create(sqareIndices, sizeof(sqareIndices) / sizeof(uint32_t));
 			m_SquareVA->SetIndexBuffer(squareIB);
 
 			std::string vertexSrc = R"(
@@ -179,7 +179,7 @@ class ExampleLayer : public Elys::Layer
 			Elys::Renderer::EndScene();
 		}
 
-		virtual void OnImGuiRender() override
+		virtual void OnImGuiRender(Elys::Timestep ts) override
 		{
 			ImGui::Begin("Settings");
 			ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));

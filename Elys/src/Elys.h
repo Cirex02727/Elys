@@ -2,6 +2,8 @@
 
 // For use by Elys applications
 
+#include "Elys/Core/Core.h"
+
 #include "Elys/Core/Application.h"
 #include "Elys/Core/Layer.h"
 #include "Elys/Core/Log.h"
@@ -21,10 +23,17 @@
 #include "Elys/Renderer/Renderer2D.h"
 #include "Elys/Renderer/RenderCommand.h"
 
+#include "Elys/Renderer/ParticleSystem.h"
+
 #include "Elys/Renderer/Buffer.h"
 #include "Elys/Renderer/Shader.h"
 #include "Elys/Renderer/Texture.h"
 #include "Elys/Renderer/VertexArray.h"
 
 #include "Elys/Renderer/OrthographicCamera.h"
+// -----------------------------------
+
+// ---Utils---------------------------
+#include "Elys/Utils/Random.h"
+#include "Elys/Utils/Utils.h"
 // -----------------------------------

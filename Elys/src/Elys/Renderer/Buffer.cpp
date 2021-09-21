@@ -7,7 +7,7 @@
 
 namespace Elys {
 
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -16,23 +16,39 @@ namespace Elys {
 				return nullptr;
 
 			case RendererAPI::API::OpenGL:
-				return new OpenGLVertexBuffer(vertices, size);
+				return CreateRef<OpenGLVertexBuffer>(size);
 		}
 
 		ELYS_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:
-			ELYS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
-			return nullptr;
+			case RendererAPI::API::None:
+				ELYS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+				return nullptr;
 
-		case RendererAPI::API::OpenGL:
-			return new OpenGLIndexBuffer(indices, size);
+			case RendererAPI::API::OpenGL:
+				return CreateRef<OpenGLVertexBuffer>(vertices, size);
+		}
+
+		ELYS_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+			case RendererAPI::API::None:
+				ELYS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+				return nullptr;
+
+			case RendererAPI::API::OpenGL:
+				return CreateRef<OpenGLIndexBuffer>(indices, size);
 		}
 
 		ELYS_CORE_ASSERT(false, "Unknown RendererAPI!");
