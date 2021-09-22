@@ -186,9 +186,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -1446,9 +1443,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Core\Application.cpp">
-      <Filter>src\Elys\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Elys\Core\Input.cpp">
       <Filter>src\Elys\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Core\Layer.cpp">

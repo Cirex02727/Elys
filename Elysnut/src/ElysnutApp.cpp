@@ -5,20 +5,20 @@
 
 namespace Elys {
 
-	class ElysEditor : public Application
+	class Elysnut : public Application
 	{
 		public:
-			ElysEditor()
-				: Application("Elys Editor")
+			Elysnut()
+				: Application("Elysnut")
 			{
 				PushLayer(new EditorLayer());
 			}
 
-			~ElysEditor() {}
+			~Elysnut() {}
 	};
 
 	Application* CreateApplication()
 	{
-		return new ElysEditor();
+		return new Elysnut();
 	}
 }

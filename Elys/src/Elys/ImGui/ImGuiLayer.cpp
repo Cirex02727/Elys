@@ -14,13 +14,9 @@
 namespace Elys {
 
 	ImGuiLayer::ImGuiLayer()
-		: Layer("ImGuiLayer")
-	{
-	}
+		: Layer("ImGuiLayer") {}
 
-	ImGuiLayer::~ImGuiLayer()
-	{
-	}
+	ImGuiLayer::~ImGuiLayer() {}
 
 	void ImGuiLayer::OnAttach()
 	{
@@ -64,6 +60,15 @@ namespace Elys {
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
+	}
+
+	void ImGuiLayer::OnEvent(Event& e)
+	{
+		if (m_BlockEvents) {
+			ImGuiIO& io = ImGui::GetIO();
+			e.Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+			e.Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+		}
 	}
 	
 	void ImGuiLayer::Begin()

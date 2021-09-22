@@ -1,6 +1,6 @@
 workspace "Elys"
 	architecture "x86_64"
-	startproject "Sandbox"
+	startproject "Elysnut"
 
 	configurations
 	{
@@ -144,8 +144,8 @@ project "Sandbox"
 		runtime "Release"
 		optimize "on"
 
-project "Elys-Editor"
-	location "Elys-Editor"
+project "Elysnut"
+	location "Elysnut"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"

@@ -16,7 +16,7 @@ namespace Elys {
 			virtual void OnDetach() {}
 			virtual void OnUpdate(Timestep ts) {}
 			virtual void OnImGuiRender(Timestep ts) {}
-			virtual void OnEvent(Event& event) {}
+			virtual void OnEvent(Event& e) {}
 
 			const std::string& GetName() const { return m_DebugName; }
 

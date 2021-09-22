@@ -13,11 +13,11 @@ int main(int argc, char** argv)
 	auto app = Elys::CreateApplication();
 	ELYS_PROFILE_END_SESSION();
 
-	ELYS_PROFILE_BEGIN_SESSION("Startup", "ElysProfile-Runtime.json");
+	ELYS_PROFILE_BEGIN_SESSION("Runtime", "ElysProfile-Runtime.json");
 	app->Run();
 	ELYS_PROFILE_END_SESSION();
 
-	ELYS_PROFILE_BEGIN_SESSION("Startup", "ElysProfile-Shutdown.json");
+	ELYS_PROFILE_BEGIN_SESSION("Shutdown", "ElysProfile-Shutdown.json");
 	delete app;
 	ELYS_PROFILE_END_SESSION();
 }

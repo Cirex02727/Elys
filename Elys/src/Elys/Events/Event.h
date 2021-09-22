@@ -39,6 +39,8 @@ namespace Elys {
 	class ELYS_API Event
 	{
 		public:
+			virtual ~Event() = default;
+
 			bool Handled = false;
 
 			virtual EventType GetEventType() const = 0;
