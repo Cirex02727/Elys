@@ -25,7 +25,6 @@ class Sandbox2D : public Elys::Layer
 		// TEMP
 		Elys::Ref<Elys::Shader> m_FlatColorShader;
 		Elys::Ref<Elys::VertexArray> m_SquareVA;
-		Elys::Ref<Elys::Framebuffer> m_Framebuffer;
 
 		Elys::Ref<Elys::Texture2D> m_CheckerboardTexture;
 

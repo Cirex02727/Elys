@@ -143,3 +143,50 @@ project "Sandbox"
 		defines "ELYS_DIST"
 		runtime "Release"
 		optimize "on"
+
+project "Elys-Editor"
+	location "Elys-Editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"Elys/vendor/spdlog/include",
+		"Elys/src",
+		"Elys/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"Elys"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		defines "ELYS_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "ELYS_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "ELYS_DIST"
+		runtime "Release"
+		optimize "on"

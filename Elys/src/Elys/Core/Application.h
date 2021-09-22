@@ -18,7 +18,7 @@ namespace Elys {
 	class ELYS_API Application
 	{
 		public:
-			Application();
+			Application(const std::string& name = "Elys App");
 			virtual ~Application();
 
 			void OnEvent(Event& e);
