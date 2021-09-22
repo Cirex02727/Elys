@@ -23,6 +23,7 @@ IncludeDir["Glad"] = "Elys/vendor/Glad/include"
 IncludeDir["ImGui"] = "Elys/vendor/imgui"
 IncludeDir["glm"] = "Elys/vendor/glm"
 IncludeDir["stb_image"] = "Elys/vendor/stb_image"
+IncludeDir["entt"] = "Elys/vendor/entt/include"
 
 group "Dependencies"
 	include "Elys/vendor/GLFW"
@@ -69,6 +70,7 @@ project "Elys"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
 	}
 
 	links 
@@ -165,7 +167,8 @@ project "Elysnut"
 		"Elys/vendor/spdlog/include",
 		"Elys/src",
 		"Elys/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
