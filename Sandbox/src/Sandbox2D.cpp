@@ -30,6 +30,11 @@ void Sandbox2D::OnAttach()
 {
 	ELYS_PROFILE_FUNCTION();
 
+	Elys::FramebufferSpacification fbspec;
+	fbspec.Width = 1280.0f;
+	fbspec.Height = 720.0f;
+	m_Framebuffer = Elys::Framebuffer::Create(fbspec);
+
 	m_CheckerboardTexture = Elys::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_SpriteSheet = Elys::Texture2D::Create("assets/spriteSheets/RPGpack_sheet_2X.png");
 	
@@ -109,6 +114,7 @@ void Sandbox2D::OnUpdate(Elys::Timestep ts)
 	Elys::Renderer2D::ResetStats();
 	{
 		ELYS_PROFILE_SCOPE("Pre-Renderer");
+		m_Framebuffer->Bind();
 		Elys::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Elys::RenderCommand::Clear();
 	}
@@ -174,6 +180,8 @@ void Sandbox2D::OnUpdate(Elys::Timestep ts)
 	//Elys::Renderer2D::DrawQuad({ -0.5f, 0.0f, 0.5f }, { 1.0f, 2.0f }, m_TextureTree);
 
 	Elys::Renderer2D::EndScene();
+
+	m_Framebuffer->Unbind();
 }
 
 float fpsRetard = 0.1f, currRetard = 0.0f, prevFps = 0.0f;
@@ -259,8 +267,8 @@ void Sandbox2D::OnImGuiRender(Elys::Timestep ts)
 
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-	uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-	ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+	uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 
 	ImGui::End();
 

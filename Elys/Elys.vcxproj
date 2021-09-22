@@ -140,7 +140,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Elys\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Elys\Renderer\SubTexture2D.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLParticleSystem.h" />
     <ClInclude Include="src\Elys\Renderer\ParticleSystem.h" />
     <ClInclude Include="src\Elys\Profiler\Instrumentor.h" />
@@ -601,7 +603,9 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Elys\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Elys\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLParticleSystem.cpp" />
     <ClCompile Include="src\Elys\Renderer\ParticleSystem.cpp" />
     <ClCompile Include="src\Elys\Core\Input.cpp" />
