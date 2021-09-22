@@ -181,6 +181,7 @@
     <ClInclude Include="src\Elys\Scene\Entity.h" />
     <ClInclude Include="src\Elys\Scene\Scene.h" />
     <ClInclude Include="src\Elys\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Elys\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\Elys\Utils\Random.h" />
     <ClInclude Include="src\Elys\Utils\Utils.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />

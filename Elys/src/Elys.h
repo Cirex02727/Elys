@@ -21,6 +21,7 @@
 #include "Elys/Scene/Scene.h"
 #include "Elys/Scene/Entity.h"
 #include "Elys/Scene/Components.h"
+#include "Elys/Scene/ScriptableEntity.h"
 
 // ---Renderer------------------------
 #include "Elys/Renderer/Renderer.h"
