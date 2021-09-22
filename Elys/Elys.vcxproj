@@ -163,6 +163,7 @@
     <ClInclude Include="src\Elys\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Elys\Profiler\Instrumentor.h" />
     <ClInclude Include="src\Elys\Renderer\Buffer.h" />
+    <ClInclude Include="src\Elys\Renderer\Camera.h" />
     <ClInclude Include="src\Elys\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Elys\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h" />

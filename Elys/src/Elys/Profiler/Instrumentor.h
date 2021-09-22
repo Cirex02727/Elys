@@ -27,16 +27,9 @@ namespace Elys {
 
 	class Instrumentor
 	{
-		private:
-			std::mutex m_Mutex;
-			InstrumentationSession* m_CurrentSession;
-			std::ofstream m_OutputStream;
-
 		public:
-			Instrumentor()
-				: m_CurrentSession(nullptr)
-			{
-			}
+			Instrumentor(const Instrumentor&) = delete;
+			Instrumentor(Instrumentor&&) = delete;
 
 			void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 			{
@@ -101,6 +94,9 @@ namespace Elys {
 			}
 
 		private:
+			Instrumentor()
+				: m_CurrentSession(nullptr) {}
+
 			void WriteHeader()
 			{
 				m_OutputStream << "{\"otherData\": {},\"traceEvents\":[{}";
@@ -123,6 +119,11 @@ namespace Elys {
 					m_CurrentSession = nullptr;
 				}
 			}
+
+		private:
+			std::mutex m_Mutex;
+			InstrumentationSession* m_CurrentSession;
+			std::ofstream m_OutputStream;
 	};
 
 	class InstrumentationTimer
@@ -183,7 +184,10 @@ namespace Elys {
 
 	#define ELYS_PROFILE_BEGIN_SESSION(name, filepath) ::Elys::Instrumentor::Get().BeginSession(name, filepath)
 	#define ELYS_PROFILE_END_SESSION() ::Elys::Instrumentor::Get().EndSession()
-	#define ELYS_PROFILE_SCOPE(name) ::Elys::InstrumentationTimer timer##__LINE__(name);
+	#define ELYS_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::Hazel::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+												   ::Hazel::InstrumentationTimer timer##line(fixedName##line.Data)
+	#define ELYS_PROFILE_SCOPE_LINE(name, line) ELYS_PROFILE_SCOPE_LINE2(name, line)
+	#define ELYS_PROFILE_SCOPE(name) ELYS_PROFILE_SCOPE_LINE(name, __LINE__)
 	#define ELYS_PROFILE_FUNCTION() ELYS_PROFILE_SCOPE(ELYS_FUNC_SIG)
 #else
 	#define ELYS_PROFILE_BEGIN_SESSION(name, filepath)

@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "Elys/Renderer/Camera.h"
+
 namespace Elys {
 
 	struct TagComponent
@@ -35,5 +37,16 @@ namespace Elys {
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color)
 			: Color(color) {}
+	};
+
+	struct CameraComponent
+	{
+		Elys::Camera Camera;
+		bool Primary = true;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& projection)
+			: Camera(projection) {}
 	};
 }
