@@ -19,6 +19,7 @@
 #include "Elys/ImGui/ImGuiLayer.h"
 
 #include "Elys/Scene/Scene.h"
+#include "Elys/Scene/Entity.h"
 #include "Elys/Scene/Components.h"
 
 // ---Renderer------------------------

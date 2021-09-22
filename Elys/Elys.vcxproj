@@ -177,6 +177,7 @@
     <ClInclude Include="src\Elys\Renderer\Texture.h" />
     <ClInclude Include="src\Elys\Renderer\VertexArray.h" />
     <ClInclude Include="src\Elys\Scene\Components.h" />
+    <ClInclude Include="src\Elys\Scene\Entity.h" />
     <ClInclude Include="src\Elys\Scene\Scene.h" />
     <ClInclude Include="src\Elys\Utils\Random.h" />
     <ClInclude Include="src\Elys\Utils\Utils.h" />
@@ -629,6 +630,7 @@
     <ClCompile Include="src\Elys\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Elys\Renderer\Texture.cpp" />
     <ClCompile Include="src\Elys\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Elys\Scene\Entity.cpp" />
     <ClCompile Include="src\Elys\Scene\Scene.cpp" />
     <ClCompile Include="src\Elys\Utils\Random.cpp" />
     <ClCompile Include="src\Elys\Utils\Utils.cpp" />

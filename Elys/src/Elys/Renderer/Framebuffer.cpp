@@ -7,7 +7,7 @@
 
 namespace Elys {
 
-	Ref<Framebuffer> Framebuffer::Create(const FramebufferSpacification& spec)
+	Ref<Framebuffer> Framebuffer::Create(const FramebufferSpecification& spec)
 	{
 		switch (Renderer::GetAPI())
 		{

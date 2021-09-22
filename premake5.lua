@@ -120,7 +120,8 @@ project "Sandbox"
 		"Elys/vendor/spdlog/include",
 		"Elys/src",
 		"Elys/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links

@@ -22,6 +22,9 @@
     <Filter Include="src\Elys\Renderer">
       <UniqueIdentifier>{5FE0953F-CBF6-93D5-146E-1FF780C3645D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Elys\Scene">
+      <UniqueIdentifier>{769C4C5B-626A-4061-4BFE-B087376B1CC6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Elys\Utils">
       <UniqueIdentifier>{B9307A5B-A5FE-6D61-8E92-DE877AFF49C6}</UniqueIdentifier>
     </Filter>
@@ -155,6 +158,15 @@
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\VertexArray.h">
       <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Scene\Components.h">
+      <Filter>src\Elys\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Scene\Entity.h">
+      <Filter>src\Elys\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Scene\Scene.h">
+      <Filter>src\Elys\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Utils\Random.h">
       <Filter>src\Elys\Utils</Filter>
@@ -1440,8 +1452,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Scene\Scene.h" />
-    <ClInclude Include="src\Elys\Scene\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Core\Application.cpp">
@@ -1507,6 +1517,12 @@
     <ClCompile Include="src\Elys\Renderer\VertexArray.cpp">
       <Filter>src\Elys\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elys\Scene\Entity.cpp">
+      <Filter>src\Elys\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Scene\Scene.cpp">
+      <Filter>src\Elys\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Elys\Utils\Random.cpp">
       <Filter>src\Elys\Utils</Filter>
     </ClCompile>
@@ -1549,6 +1565,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Elys\Scene\Scene.cpp" />
   </ItemGroup>
 </Project>
