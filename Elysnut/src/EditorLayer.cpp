@@ -40,10 +40,8 @@ namespace Elys {
 			public:
 				void OnCreate()
 				{
-				}
-
-				void OnDestroy()
-				{
+					auto& transform = GetComponent<TransformComponent>().Transform;
+					transform[3][0] = rand() % 10 - 5.0f;
 				}
 
 				void OnUpdate(Timestep ts)
@@ -61,7 +59,9 @@ namespace Elys {
 						transform[3][1] -= speed * ts;
 				}
 		};
+
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 	}
 
 	void EditorLayer::OnDetach()
@@ -189,8 +189,16 @@ namespace Elys {
 			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
 		}
 
-		ImGui::DragFloat3("Camera Transform",
-			glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		if (m_CameraEntity.GetComponent<CameraComponent>().Primary)
+		{
+			ImGui::DragFloat3("Camera Transform",
+				glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		}
+		else
+		{
+			ImGui::DragFloat3("Camera Transform",
+				glm::value_ptr(m_SecondCamera.GetComponent<TransformComponent>().Transform[3]));
+		}
 
 		if(ImGui::Checkbox("Camera A", &m_PrimaryCamera))
 		{
