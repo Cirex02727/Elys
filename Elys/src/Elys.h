@@ -28,6 +28,7 @@
 #include "Elys/Renderer/Buffer.h"
 #include "Elys/Renderer/Shader.h"
 #include "Elys/Renderer/Texture.h"
+#include "Elys/Renderer/SubTexture2D.h"
 #include "Elys/Renderer/VertexArray.h"
 
 #include "Elys/Renderer/OrthographicCamera.h"

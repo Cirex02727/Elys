@@ -30,8 +30,14 @@ class Sandbox2D : public Elys::Layer
 
 		std::vector<Elys::QuadVertex> m_Grid;
 
+		Elys::Ref<Elys::Texture2D> m_SpriteSheet;
+		Elys::Ref<Elys::SubTexture2D> m_TextureBarrel, m_TextureTree;
+
 		Elys::ParticleProp m_Particle;
 		Elys::Ref<Elys::ParticleSystem> m_ParticleSystem;
 
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+		uint32_t m_MapWidth, m_MapHeight;
+		std::unordered_map<char, Elys::Ref<Elys::SubTexture2D>> s_TextureMap;
 };
