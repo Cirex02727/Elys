@@ -1453,6 +1453,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Camera.h" />
+    <ClInclude Include="src\Elys\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Core\Application.cpp">
@@ -1566,5 +1567,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elys\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>
