@@ -13,3 +13,6 @@
 [submodule "Elys/vendor/yaml-cpp"]
 	path = Elys/vendor/yaml-cpp
 	url = https://github.com/TheCherno/yaml-cpp
+[submodule "Elys/vendor/ImGuizmo"]
+	path = Elys/vendor/ImGuizmo
+	url = https://github.com/thecherno/imguizmo

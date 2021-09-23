@@ -20,6 +20,7 @@ project "Elysnut"
 		"%{wks.location}/Elys/vendor",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}",
 	}
 
 	links
