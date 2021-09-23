@@ -30,16 +30,11 @@
 	#endif
 	#define ELYS_ENABLE_ASSERTS
 #else
-#define ELYS_DEBUGBREAK()
+	#define ELYS_DEBUGBREAK()
 #endif
 
-#ifdef ELYS_ENABLE_ASSERTS
-	#define ELYS_ASSERT(x, ...) { if(!(x)) { ELYS_ERROR("Assertion Failed: {0}", __VA_ARGS__); ELYS_DEBUGBREAK(); } }
-	#define ELYS_CORE_ASSERT(x, ...) { if(!(x)) { ELYS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); ELYS_DEBUGBREAK(); } }
-#else
-	#define ELYS_ASSERT(x, ...)
-	#define ELYS_CORE_ASSERT(x, ...)
-#endif
+#define ELYS_EXPAND_MACRO(x) x
+#define ELYS_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -65,3 +60,6 @@ namespace Elys {
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 }
+
+#include "Elys/Core/Log.h"
+#include "Elys/Core/Assert.h"

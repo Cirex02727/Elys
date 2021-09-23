@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="src\Elys.h" />
     <ClInclude Include="src\Elys\Core\Application.h" />
+    <ClInclude Include="src\Elys\Core\Assert.h" />
     <ClInclude Include="src\Elys\Core\Core.h" />
     <ClInclude Include="src\Elys\Core\EntryPoint.h" />
     <ClInclude Include="src\Elys\Core\Input.h" />

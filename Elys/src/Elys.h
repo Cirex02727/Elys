@@ -7,6 +7,7 @@
 #include "Elys/Core/Application.h"
 #include "Elys/Core/Layer.h"
 #include "Elys/Core/Log.h"
+#include "Elys/Core/Assert.h"
 
 #include "Elys/Core/Timestep.h"
 
