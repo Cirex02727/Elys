@@ -6,6 +6,8 @@
 
 #include "Elys/Scene/SceneSerializer.h"
 
+#include "Elys/Utils/PlatformUtils.h"
+
 namespace Elys {
 
 	EditorLayer::EditorLayer()
@@ -169,17 +171,14 @@ namespace Elys {
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				if (ImGui::MenuItem("Serialize"))
-				{
-					SceneSerializer sceneSerializer(m_ActiveScene);
-					sceneSerializer.Serialize("assets/scenes/Example.elys");
-				}
+				if (ImGui::MenuItem("New"))
+					NewScene();
 
-				if (ImGui::MenuItem("Deserialize"))
-				{
-					SceneSerializer sceneSerializer(m_ActiveScene);
-					sceneSerializer.Deserialize("assets/scenes/Example.elys");
-				}
+				if (ImGui::MenuItem("Open...", "Ctrl+O"))
+					OpenScene();
+
+				if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+					SaveSceneAs();
 
 				if (ImGui::MenuItem("Exit")) Application::Get().Close();
 				ImGui::EndMenu();
@@ -225,5 +224,72 @@ namespace Elys {
 	void EditorLayer::OnEvent(Event& e)
 	{
 		m_CameraController.OnEvent(e);
+
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<KeyPressedEvent>(ELYS_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+	}
+
+	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
+	{
+		// Shortcuts
+		if (e.GetRepeatCount() > 0)
+			return false;
+
+		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
+		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
+		switch (e.GetKeyCode())
+		{
+			case Key::N:
+				if (control)
+				{
+					NewScene();
+				}
+				break;
+
+			case Key::O:
+				if (control)
+				{
+					OpenScene();
+				}
+				break;
+
+			case Key::S:
+				if (control && shift)
+				{
+					SaveSceneAs();
+				}
+				break;
+		}
+	}
+
+	void EditorLayer::NewScene()
+	{
+		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+	}
+
+	void EditorLayer::OpenScene()
+	{
+		std::string filepath = FileDialogs::OpenFile("Elys Scene (*.elys)\0*.elys\0");
+		if (!filepath.empty())
+		{
+			m_ActiveScene = CreateRef<Scene>();
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+			SceneSerializer sceneSerializer(m_ActiveScene);
+			sceneSerializer.Deserialize(filepath);
+		}
+	}
+
+	void EditorLayer::SaveSceneAs()
+	{
+		std::string filepath = FileDialogs::SaveFile("Elys Scene (*.elys)\0*.elys\0");
+		if (!filepath.empty())
+		{
+			SceneSerializer sceneSerializer(m_ActiveScene);
+			sceneSerializer.Serialize(filepath);
+		}
 	}
 }

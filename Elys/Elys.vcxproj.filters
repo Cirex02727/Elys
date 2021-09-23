@@ -186,6 +186,9 @@
     <ClInclude Include="src\Elys\Scene\ScriptableEntity.h">
       <Filter>src\Elys\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Utils\PlatformUtils.h">
+      <Filter>src\Elys\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Utils\Random.h">
       <Filter>src\Elys\Utils</Filter>
     </ClInclude>
@@ -1578,6 +1581,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
