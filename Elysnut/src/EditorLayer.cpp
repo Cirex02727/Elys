@@ -31,10 +31,10 @@ namespace Elys {
 
 		m_SquareEntity = square;
 
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera A");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
-		m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
+		m_SecondCamera = m_ActiveScene->CreateEntity("Camera B");
 		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
 		cc.Primary = false;
 
@@ -111,7 +111,6 @@ namespace Elys {
 		m_Framebuffer->Unbind();
 	}
 
-	float fpsRetard = 0.1f, currRetard = 0.0f, prevFps = 0.0f;
 	void EditorLayer::OnImGuiRender(Timestep ts)
 	{
 		ELYS_PROFILE_FUNCTION();
@@ -171,60 +170,18 @@ namespace Elys {
 
 		m_SceneHierarchyPanel.OnImGuiRender();
 
-		ImGui::Begin("Settings");
+		ImGui::Begin("Render2D Stats");
 
-		if (currRetard < fpsRetard) {
-			currRetard += ts.GetSeconds();
-		}
-		else {
-			currRetard = 0.0f;
-			prevFps = 1 / ts.GetSeconds();
-		}
-
-		ImGui::Text("Fps: %.5fms (%f fps)", ts.GetSeconds(), prevFps);
+		ImGui::Text("Fps: %.5fms (%f fps)", ts.GetSeconds(), 1 / ts.GetSeconds());
 
 		ImGui::Spacing();
 
 		auto stats = Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats:");
+		ImGui::Text("Renderer Stats:");
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-
-
-		if (m_SquareEntity)
-		{
-			ImGui::Separator();
-			ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
-
-			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
-		}
-
-		if (m_CameraEntity.GetComponent<CameraComponent>().Primary)
-		{
-			ImGui::DragFloat3("Camera Transform",
-				glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
-		}
-		else
-		{
-			ImGui::DragFloat3("Camera Transform",
-				glm::value_ptr(m_SecondCamera.GetComponent<TransformComponent>().Transform[3]));
-		}
-
-		if(ImGui::Checkbox("Camera A", &m_PrimaryCamera))
-		{
-			m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
-			m_SecondCamera.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
-		}
-
-		{
-			auto& camera = m_SecondCamera.GetComponent<CameraComponent>().Camera;
-			float orthoSize = camera.GetOrthographicSize();
-			if(ImGui::DragFloat("Second Camera Ortho Size", &orthoSize))
-				camera.SetOrthographicSize(orthoSize);
-		}
 
 		ImGui::End();
 
