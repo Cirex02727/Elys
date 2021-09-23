@@ -10,3 +10,6 @@
 [submodule "Elys/vendor/glm"]
 	path = Elys/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "Elys/vendor/yaml-cpp"]
+	path = Elys/vendor/yaml-cpp
+	url = https://github.com/TheCherno/yaml-cpp

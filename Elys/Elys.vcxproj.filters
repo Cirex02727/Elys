@@ -180,6 +180,9 @@
     <ClInclude Include="src\Elys\Scene\SceneCamera.h">
       <Filter>src\Elys\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Scene\SceneSerializer.h">
+      <Filter>src\Elys\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Scene\ScriptableEntity.h">
       <Filter>src\Elys\Scene</Filter>
     </ClInclude>
@@ -1539,6 +1542,9 @@
       <Filter>src\Elys\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Scene\SceneCamera.cpp">
+      <Filter>src\Elys\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Scene\SceneSerializer.cpp">
       <Filter>src\Elys\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Utils\Random.cpp">
