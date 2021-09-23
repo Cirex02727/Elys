@@ -1,14 +1,14 @@
 #pragma once
 
 #include "Event.h"
-#include "Elys/Core/Input.h"
+#include "Elys/Core/MouseCodes.h"
 
 namespace Elys {
 
 	class ELYS_API MouseMovedEvent : public Event
 	{
 		public:
-			MouseMovedEvent(float x, float y)
+			MouseMovedEvent(const float x, const float y)
 				: m_MouseX(x), m_MouseY(y) {}
 
 			float GetX() const { return m_MouseX; }
@@ -31,7 +31,7 @@ namespace Elys {
 	class ELYS_API MouseScrolledEvent : public Event
 	{
 		public:
-			MouseScrolledEvent(float xOffset, float yOffset)
+			MouseScrolledEvent(const float xOffset, const float yOffset)
 				: m_XOffset(xOffset), m_YOffset(yOffset) {}
 
 			float GetXOffset() const { return m_XOffset; }
@@ -59,7 +59,7 @@ namespace Elys {
 			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
 		protected:
-			MouseButtonEvent(MouseCode button)
+			MouseButtonEvent(const MouseCode button)
 				: m_Button(button) {}
 
 			MouseCode m_Button;
@@ -68,7 +68,7 @@ namespace Elys {
 	class ELYS_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 		public:
-			MouseButtonPressedEvent(MouseCode button)
+			MouseButtonPressedEvent(const MouseCode button)
 				: MouseButtonEvent(button) {}
 
 			std::string ToString() const override
@@ -84,7 +84,7 @@ namespace Elys {
 	class ELYS_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 		public:
-			MouseButtonReleasedEvent(MouseCode button)
+			MouseButtonReleasedEvent(const MouseCode button)
 				: MouseButtonEvent(button) {}
 
 			std::string ToString() const override

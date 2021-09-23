@@ -1,7 +1,8 @@
 #pragma once
 
-#include "elyspch.h"
+#include <functional>
 
+#include "Elys/Profiler/Instrumentor.h"
 #include "Elys/Core/Core.h"
 
 namespace Elys {

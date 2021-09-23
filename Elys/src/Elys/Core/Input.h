@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Elys/Core/Core.h"
+#include <glm/glm.hpp>
+
 #include "Elys/Core/KeyCodes.h"
 #include "Elys/Core/MouseCodes.h"
 
@@ -12,7 +13,7 @@ namespace Elys {
 			static bool IsKeyPressed(KeyCode key);
 
 			static bool IsMouseButtonPressed(MouseCode button);
-			static std::pair<float, float> GetMousePosition();
+			static glm::vec2 GetMousePosition();
 			static float GetMouseX();
 			static float GetMouseY();
 	};

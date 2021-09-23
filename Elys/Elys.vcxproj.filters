@@ -93,6 +93,9 @@
     <ClInclude Include="src\Elys\Core\MouseCodes.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Core\PlatformDetection.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Core\Timestep.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
@@ -118,6 +121,9 @@
       <Filter>src\Elys\Profiler</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Buffer.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\Camera.h">
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Framebuffer.h">
@@ -166,6 +172,12 @@
       <Filter>src\Elys\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Scene\Scene.h">
+      <Filter>src\Elys\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Scene\SceneCamera.h">
+      <Filter>src\Elys\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Scene\ScriptableEntity.h">
       <Filter>src\Elys\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Utils\Random.h">
@@ -1452,9 +1464,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Renderer\Camera.h" />
-    <ClInclude Include="src\Elys\Scene\SceneCamera.h" />
-    <ClInclude Include="src\Elys\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Core\Application.cpp">
@@ -1526,6 +1535,9 @@
     <ClCompile Include="src\Elys\Scene\Scene.cpp">
       <Filter>src\Elys\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elys\Scene\SceneCamera.cpp">
+      <Filter>src\Elys\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Elys\Utils\Random.cpp">
       <Filter>src\Elys\Utils</Filter>
     </ClCompile>
@@ -1568,6 +1580,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Elys\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

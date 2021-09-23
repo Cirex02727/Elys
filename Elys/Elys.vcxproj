@@ -154,6 +154,7 @@
     <ClInclude Include="src\Elys\Core\LayerStack.h" />
     <ClInclude Include="src\Elys\Core\Log.h" />
     <ClInclude Include="src\Elys\Core\MouseCodes.h" />
+    <ClInclude Include="src\Elys\Core\PlatformDetection.h" />
     <ClInclude Include="src\Elys\Core\Timestep.h" />
     <ClInclude Include="src\Elys\Core\Window.h" />
     <ClInclude Include="src\Elys\Events\ApplicationEvent.h" />

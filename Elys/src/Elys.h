@@ -13,15 +13,14 @@
 #include "Elys/Core/Input.h"
 #include "Elys/Core/KeyCodes.h"
 #include "Elys/Core/MouseCodes.h"
-
 #include "Elys/Renderer/OrthographicCameraController.h"
 
 #include "Elys/ImGui/ImGuiLayer.h"
 
 #include "Elys/Scene/Scene.h"
 #include "Elys/Scene/Entity.h"
-#include "Elys/Scene/Components.h"
 #include "Elys/Scene/ScriptableEntity.h"
+#include "Elys/Scene/Components.h"
 
 // ---Renderer------------------------
 #include "Elys/Renderer/Renderer.h"

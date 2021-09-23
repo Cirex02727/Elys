@@ -1,6 +1,6 @@
 #pragma once
 
-#include "elyspch.h"
+#include <sstream>
 
 #include "Elys/Core/Core.h"
 #include "Elys/Events/Event.h"
