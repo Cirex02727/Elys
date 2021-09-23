@@ -7,6 +7,8 @@
 #include "Elys/Renderer/SubTexture2D.h"
 #include "Elys/Renderer/Texture.h"
 
+#include "Elys/Scene/Components.h"
+
 namespace Elys {
 
 	struct QuadVertex
@@ -16,6 +18,9 @@ namespace Elys {
 		glm::vec2 TexCoord;
 		float TexIndex;
 		glm::vec2 TilingFactor;
+
+		// Editor-only
+		int EntityID;
 	};
 
 	class Renderer2D
@@ -31,6 +36,7 @@ namespace Elys {
 			static void Flush();
 
 			// Primitives
+
 			static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 			static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
 			static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec2& tilingFactor = glm::vec2(1.0f), const glm::vec4& tintColor = glm::vec4(1.0f));
@@ -40,8 +46,8 @@ namespace Elys {
 
 			static void DrawQuad(QuadVertex* quads);
 
-			static void DrawQuad(const glm::mat4& transform, const glm::vec4& color);
-			static void DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, const glm::vec2& tilingFactor = glm::vec2(1.0f), const glm::vec4& tintColor = glm::vec4(1.0f));
+			static void DrawQuad(const glm::mat4& transform, const glm::vec4& color, int entityID = -1);
+			static void DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, const glm::vec2& tilingFactor = glm::vec2(1.0f), const glm::vec4& tintColor = glm::vec4(1.0f), int entityID = -1);
 
 			static void DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color);
 			static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color);
@@ -50,6 +56,8 @@ namespace Elys {
 			static void DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<SubTexture2D>& subtexture, const glm::vec2& tilingFactor = glm::vec2(1.0f), const glm::vec4& tintColor = glm::vec4(1.0f));
 			static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<SubTexture2D>& subtexture, const glm::vec2& tilingFactor = glm::vec2(1.0f), const glm::vec4& tintColor = glm::vec4(1.0f));
 
+			static void DrawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID);
+			
 			// Stats
 			struct Statistics
 			{
