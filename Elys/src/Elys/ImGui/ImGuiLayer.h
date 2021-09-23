@@ -22,7 +22,7 @@ namespace Elys {
 			void Begin();
 			void End();
 
-			void SetBlockEvents(bool block) { m_BlockEvents = block; }
+			void BlockEvents(bool block) { m_BlockEvents = block; }
 
 			void SetDarkThemeColors();
 

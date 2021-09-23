@@ -16,6 +16,9 @@
     <Filter Include="src\Elys\ImGui">
       <UniqueIdentifier>{83A49C5A-6F72-9060-5806-018744736CC5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Elys\Math">
+      <UniqueIdentifier>{128D2DB5-7E4D-A9EB-4788-F268B307EEC7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Elys\Profiler">
       <UniqueIdentifier>{0BBE4252-77D4-40E8-C04B-CC092CA11170}</UniqueIdentifier>
     </Filter>
@@ -123,6 +126,9 @@
     <ClInclude Include="src\Elys\ImGui\ImGuiLayer.h">
       <Filter>src\Elys\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Math\Math.h">
+      <Filter>src\Elys\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Profiler\Instrumentor.h">
       <Filter>src\Elys\Profiler</Filter>
     </ClInclude>
@@ -130,6 +136,9 @@
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Camera.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\EditorCamera.h">
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Elys\Renderer\Framebuffer.h">
@@ -1479,7 +1488,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elys\Math\Math.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Elys\Core\Application.cpp">
@@ -1503,7 +1511,13 @@
     <ClCompile Include="src\Elys\ImGui\ImGuiLayer.cpp">
       <Filter>src\Elys\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elys\Math\Math.cpp">
+      <Filter>src\Elys\Math</Filter>
+    </ClCompile>
     <ClCompile Include="src\Elys\Renderer\Buffer.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\EditorCamera.cpp">
       <Filter>src\Elys\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Renderer\Framebuffer.cpp">
@@ -1605,6 +1619,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Elys\Math\Math.cpp" />
   </ItemGroup>
 </Project>

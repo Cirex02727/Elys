@@ -18,7 +18,7 @@ namespace Elys {
 		static const uint32_t MaxVertices = MaxQuads * 4;
 		static const uint32_t MaxIndices = MaxQuads * 6;
 		static const uint32_t MaxTextureSlots = 32; // TODO: RenderCaps
-
+		
 		Ref<VertexArray> QuadVertexArray;
 		Ref<VertexBuffer> QuadVertexBuffer;
 		Ref<Shader> TextureShader;
@@ -119,6 +119,18 @@ namespace Elys {
 		ELYS_PROFILE_FUNCTION();
 
 		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(transform);
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		StartBatch();
+	}
+
+	void Renderer2D::BeginScene(const EditorCamera& camera)
+	{
+		ELYS_PROFILE_FUNCTION();
+
+		glm::mat4 viewProj = camera.GetViewProjection();
 
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);

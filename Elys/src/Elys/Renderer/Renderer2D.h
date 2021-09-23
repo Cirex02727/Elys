@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Elys/Renderer/Camera.h"
+#include "Elys/Renderer/EditorCamera.h"
 #include "Elys/Renderer/OrthographicCamera.h"
 
 #include "Elys/Renderer/SubTexture2D.h"
@@ -24,7 +25,8 @@ namespace Elys {
 			static void Shutdown();
 
 			static void BeginScene(const Camera& camera, const glm::mat4& transform);
-			static void BeginScene(const OrthographicCamera& camera);
+			static void BeginScene(const EditorCamera& camera);
+			static void BeginScene(const OrthographicCamera& camera); // TODO: Remove
 			static void EndScene();
 			static void Flush();
 

@@ -3,6 +3,8 @@
 #include "Elys.h"
 #include "Panels/SceneHierarchyPanel.h"
 
+#include "Elys/Renderer/EditorCamera.h"
+
 namespace Elys {
 
 	class EditorLayer : public Layer
@@ -39,6 +41,8 @@ namespace Elys {
 			Entity m_SecondCamera;
 
 			bool m_PrimaryCamera = true;
+
+			EditorCamera m_EditorCamera;
 
 			Ref<Texture2D> m_CheckerboardTexture;
 

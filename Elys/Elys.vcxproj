@@ -167,6 +167,7 @@
     <ClInclude Include="src\Elys\Profiler\Instrumentor.h" />
     <ClInclude Include="src\Elys\Renderer\Buffer.h" />
     <ClInclude Include="src\Elys\Renderer\Camera.h" />
+    <ClInclude Include="src\Elys\Renderer\EditorCamera.h" />
     <ClInclude Include="src\Elys\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Elys\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Elys\Renderer\OrthographicCamera.h" />
@@ -627,6 +628,7 @@
     <ClCompile Include="src\Elys\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Elys\Math\Math.cpp" />
     <ClCompile Include="src\Elys\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Elys\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\Elys\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Elys\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Elys\Renderer\OrthographicCamera.cpp" />

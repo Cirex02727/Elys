@@ -30,6 +30,8 @@ namespace Elys {
 
 		m_ActiveScene = CreateRef<Scene>();
 
+		m_EditorCamera = EditorCamera(30.0f, 1.7780f, 0.1f, 1000.0f);
+
 #if 0
 		// Entity
 		auto square = m_ActiveScene->CreateEntity("Green Square");
@@ -100,13 +102,16 @@ namespace Elys {
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
-
+			m_EditorCamera.SetViewportSize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t) m_ViewportSize.x, (uint32_t) m_ViewportSize.y);
 		}
 
 		// Update
 		if (m_ViewportFocused)
+		{
 			m_CameraController.OnUpdate(ts);
+			m_EditorCamera.OnUpdate(ts);
+		}
 
 		//Render
 		Renderer2D::ResetStats();
@@ -115,7 +120,7 @@ namespace Elys {
 		RenderCommand::Clear();
 
 		// Update scene
-		m_ActiveScene->OnUpdate(ts);
+		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 
 		m_Framebuffer->Unbind();
 	}
@@ -176,7 +181,7 @@ namespace Elys {
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				if (ImGui::MenuItem("New"))
+				if (ImGui::MenuItem("New", "Ctrl+N"))
 					NewScene();
 
 				if (ImGui::MenuItem("Open...", "Ctrl+O"))
@@ -219,7 +224,7 @@ namespace Elys {
 		
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
-		Application::Get().GetImGuiLayer()->SetBlockEvents(!m_ViewportFocused && !m_ViewportHovered);
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
@@ -238,10 +243,14 @@ namespace Elys {
 			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
 
 			// Camera
-			auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
-			const auto& camera = cameraEntity.GetComponent<CameraComponent>();
-			const glm::mat4& cameraProjection = camera.Camera.GetProjection();
-			glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+			// auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
+			// const auto& camera = cameraEntity.GetComponent<CameraComponent>();
+			// const glm::mat4& cameraProjection = camera.Camera.GetProjection();
+			// glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+
+			// Editor Camera
+			const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
+			glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
 
 			// Entity transform
 			auto& tc = selectedEntity.GetComponent<TransformComponent>();
@@ -281,6 +290,7 @@ namespace Elys {
 	void EditorLayer::OnEvent(Event& e)
 	{
 		m_CameraController.OnEvent(e);
+		m_EditorCamera.OnEvent(e);
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(ELYS_BIND_EVENT_FN(EditorLayer::OnKeyPressed));

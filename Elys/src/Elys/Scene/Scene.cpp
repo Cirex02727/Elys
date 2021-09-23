@@ -10,15 +10,9 @@
 
 namespace Elys {
 
-	Scene::Scene()
-	{
+	Scene::Scene() {}
 
-	}
-
-	Scene::~Scene()
-	{
-
-	}
+	Scene::~Scene() {}
 
 	Entity Scene::CreateEntity(const std::string& name)
 	{
@@ -28,13 +22,13 @@ namespace Elys {
 		tag.Tag = name.empty() ? "Entity" : name;
 		return entity;
 	}
-
+	
 	void Scene::DestroyEntity(Entity entity)
 	{
 		m_Registry.destroy(entity);
 	}
 
-	void Scene::OnUpdate(Timestep ts)
+	void Scene::OnUpdateRuntime(Timestep ts)
 	{
 		// Update scripts
 		{
@@ -70,9 +64,24 @@ namespace Elys {
 			}
 		}
 
-		if (!mainCamera) return;
+		if (mainCamera)
+		{
+			Renderer2D::BeginScene(*mainCamera, cameraTransform);
 
-		Renderer2D::BeginScene(*mainCamera, cameraTransform);
+			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+			for (auto entity : group)
+			{
+				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+				Renderer2D::DrawQuad(transform.GetTransform(), sprite.Color);
+			}
+
+			Renderer2D::EndScene();
+		}
+	}
+
+	void Scene::OnUpdateEditor(Timestep ts, EditorCamera& camera)
+	{
+		Renderer2D::BeginScene(camera);
 
 		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 		for (auto entity : group)
