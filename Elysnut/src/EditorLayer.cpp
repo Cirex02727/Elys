@@ -24,6 +24,8 @@ namespace Elys {
 		ELYS_PROFILE_FUNCTION();
 
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
+		m_IconPlay = Texture2D::Create("Resources/Icons/Editor/PlayButton.png");
+		m_IconStop = Texture2D::Create("Resources/Icons/Editor/StopButton.png");
 
 		FramebufferSpecification fbspec;
 		fbspec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
@@ -117,13 +119,6 @@ namespace Elys {
 			m_ActiveScene->OnViewportResize((uint32_t) m_ViewportSize.x, (uint32_t) m_ViewportSize.y);
 		}
 
-		// Update
-		if (m_ViewportFocused)
-		{
-			m_CameraController.OnUpdate(ts);
-			m_EditorCamera.OnUpdate(ts);
-		}
-
 		//Render
 		Renderer2D::ResetStats();
 		m_Framebuffer->Bind();
@@ -133,8 +128,21 @@ namespace Elys {
 		// Clear our entity ID attachment to -1
 		m_Framebuffer->ClearAttachment(1, -1);
 
-		// Update scene
-		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+		if (m_SceneState == SceneState::Edit)
+		{
+			// Update
+			if (m_ViewportFocused)
+				m_CameraController.OnUpdate(ts);
+
+			m_EditorCamera.OnUpdate(ts);
+
+			// Update scene
+			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+		}
+		else if (m_SceneState == SceneState::Play)
+		{
+			m_ActiveScene->OnUpdateRuntime(ts);
+		}
 
 		auto [mx, my] = ImGui::GetMousePos();
 		mx -= m_ViewportBounds[0].x;
@@ -148,7 +156,7 @@ namespace Elys {
 		if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
 		{
 			int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
-			m_HoveredEntity =  pixelData == -1 ? Entity() : Entity{ (entt::entity)pixelData, m_ActiveScene.get() };
+			m_HoveredEntity = pixelData == -1 ? Entity() : Entity{ (entt::entity)pixelData, m_ActiveScene.get() };
 		}
 
 		m_Framebuffer->Unbind();
@@ -333,6 +341,36 @@ namespace Elys {
 		ImGui::End();
 		ImGui::PopStyleVar();
 
+		UI_Toolbar();
+
+		ImGui::End();
+	}
+
+	void EditorLayer::UI_Toolbar()
+	{
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 2 });
+		ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2{ 0, 0 });
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0, 0, 0, 0 });
+		auto& colors = ImGui::GetStyle().Colors;
+		auto& buttonHovered = colors[ImGuiCol_ButtonHovered];
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ buttonHovered.x, buttonHovered.y, buttonHovered.z, 0.5f });
+		auto& buttonActive = colors[ImGuiCol_ButtonActive];
+		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ buttonActive.x, buttonActive.y, buttonActive.z, 0.5f });
+
+		ImGui::Begin("##tollbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+		float size = ImGui::GetWindowHeight() - 4.0f;
+		Ref<Texture2D> icon = m_SceneState == SceneState::Edit ? m_IconPlay : m_IconStop;
+		ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+		if (ImGui::ImageButton((ImTextureID)icon->GetRendererID(), ImVec2{ size, size }, ImVec2{ 0, 0 }, ImVec2{ 1, 1 }, 0))
+		{
+			if (m_SceneState == SceneState::Edit)
+				OnScenePlay();
+			else if (m_SceneState == SceneState::Play)
+				OnSceneStop();
+		}
+		ImGui::PopStyleVar(2);
+		ImGui::PopStyleColor(3);
 		ImGui::End();
 	}
 
@@ -408,7 +446,7 @@ namespace Elys {
 
 	bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e)
 	{
-		if (e.GetMouseButton() == Mouse::ButtonLeft)
+		if (e.GetMouseButton() == Mouse::ButtonLeft && m_SceneState == SceneState::Edit)
 		{
 			if(m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(Key::LeftAlt))
 				m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
@@ -448,5 +486,15 @@ namespace Elys {
 			SceneSerializer sceneSerializer(m_ActiveScene);
 			sceneSerializer.Serialize(filepath);
 		}
+	}
+
+	void EditorLayer::OnScenePlay()
+	{
+		m_SceneState = SceneState::Play;
+	}
+
+	void EditorLayer::OnSceneStop()
+	{
+		m_SceneState = SceneState::Edit;
 	}
 }
