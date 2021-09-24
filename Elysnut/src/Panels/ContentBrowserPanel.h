@@ -2,6 +2,8 @@
 
 #include <filesystem>
 
+#include "Elys/Renderer/Texture.h"
+
 namespace Elys {
 
 	class ContentBrowserPanel
@@ -13,5 +15,7 @@ namespace Elys {
 
 		private:
 			std::filesystem::path m_CurrentDirectory;
+			Ref<Texture2D> m_DirectoryIcon;
+			Ref<Texture2D> m_FileIcon;
 	};
 }
