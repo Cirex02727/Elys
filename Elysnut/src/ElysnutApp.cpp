@@ -8,8 +8,8 @@ namespace Elys {
 	class Elysnut : public Application
 	{
 		public:
-			Elysnut()
-				: Application("Elysnut")
+			Elysnut(ApplicationCommandLineArgs args)
+				: Application("Elysnut", args)
 			{
 				PushLayer(new EditorLayer());
 			}
@@ -17,8 +17,8 @@ namespace Elys {
 			~Elysnut() {}
 	};
 
-	Application* CreateApplication()
+	Application* CreateApplication(ApplicationCommandLineArgs args)
 	{
-		return new Elysnut();
+		return new Elysnut(args);
 	}
 }

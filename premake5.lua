@@ -1,4 +1,5 @@
 include "./vendor/premake/premake_customization/solution_items.lua"
+include "Dependencies.lua"
 
 workspace "Elys"
 	architecture "x86_64"
@@ -22,17 +23,6 @@ workspace "Elys"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-
--- Include directories relative to root folder (solution directory)
-IncludeDir = {}
-IncludeDir["GLFW"] = "%{wks.location}/Elys/vendor/GLFW/include"
-IncludeDir["Glad"] = "%{wks.location}/Elys/vendor/Glad/include"
-IncludeDir["ImGui"] = "%{wks.location}/Elys/vendor/imgui"
-IncludeDir["glm"] = "%{wks.location}/Elys/vendor/glm"
-IncludeDir["stb_image"] = "%{wks.location}/Elys/vendor/stb_image"
-IncludeDir["entt"] = "%{wks.location}/Elys/vendor/entt/include"
-IncludeDir["yaml_cpp"] = "%{wks.location}/Elys/vendor/yaml-cpp/include"
-IncludeDir["ImGuizmo"] = "%{wks.location}/Elys/vendor/ImGuizmo"
 
 group "Dependencies"
 	include "vendor/premake"

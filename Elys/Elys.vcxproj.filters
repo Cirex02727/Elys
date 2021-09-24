@@ -105,6 +105,9 @@
     <ClInclude Include="src\Elys\Core\PlatformDetection.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Core\Timer.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Core\Timestep.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
@@ -177,6 +180,9 @@
     <ClInclude Include="src\Elys\Renderer\Texture.h">
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Renderer\UniformBuffer.h">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Renderer\VertexArray.h">
       <Filter>src\Elys\Renderer</Filter>
     </ClInclude>
@@ -226,6 +232,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1556,6 +1565,9 @@
     <ClCompile Include="src\Elys\Renderer\Texture.cpp">
       <Filter>src\Elys\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elys\Renderer\UniformBuffer.cpp">
+      <Filter>src\Elys\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Elys\Renderer\VertexArray.cpp">
       <Filter>src\Elys\Renderer</Filter>
     </ClCompile>
@@ -1596,6 +1608,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">

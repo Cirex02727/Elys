@@ -31,6 +31,14 @@ namespace Elys {
 
 		m_ActiveScene = CreateRef<Scene>();
 
+		auto commandLineArgs = Application::Get().GetCommandLineArgs();
+		if (commandLineArgs.Count > 1)
+		{
+			auto sceneFilePath = commandLineArgs[1];
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Deserialize(sceneFilePath);
+		}
+
 		m_EditorCamera = EditorCamera(30.0f, 1.7780f, 0.1f, 1000.0f);
 
 #if 0
@@ -404,25 +412,25 @@ namespace Elys {
 
 	void EditorLayer::OpenScene()
 	{
-		std::optional<std::string> filepath = FileDialogs::OpenFile("Elys Scene (*.elys)\0*.elys\0");
-		if (filepath)
+		std::string filepath = FileDialogs::OpenFile("Elys Scene (*.elys)\0*.elys\0");
+		if (!filepath.empty())
 		{
 			m_ActiveScene = CreateRef<Scene>();
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
 			SceneSerializer sceneSerializer(m_ActiveScene);
-			sceneSerializer.Deserialize(*filepath);
+			sceneSerializer.Deserialize(filepath);
 		}
 	}
 
 	void EditorLayer::SaveSceneAs()
 	{
-		std::optional<std::string> filepath = FileDialogs::SaveFile("Elys Scene (*.elys)\0*.elys\0");
-		if (filepath)
+		std::string filepath = FileDialogs::SaveFile("Elys Scene (*.elys)\0*.elys\0");
+		if (!filepath.empty())
 		{
 			SceneSerializer sceneSerializer(m_ActiveScene);
-			sceneSerializer.Serialize(*filepath);
+			sceneSerializer.Serialize(filepath);
 		}
 	}
 }

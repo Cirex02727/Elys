@@ -15,10 +15,22 @@ int main(int argc, char** argv);
 
 namespace Elys {
 
+	struct ApplicationCommandLineArgs
+	{
+		int Count = 0;
+		char** Args = nullptr;
+
+		const char* operator[](int index) const
+		{
+			ELYS_CORE_ASSERT(index < Count);
+			return Args[index];
+		}
+	};
+
 	class ELYS_API Application
 	{
 		public:
-			Application(const std::string& name = "Elys App");
+			Application(const std::string& name = "Elys App", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
 			virtual ~Application();
 
 			void OnEvent(Event& e);
@@ -34,6 +46,8 @@ namespace Elys {
 
 			static Application& Get() { return *s_Instance; }
 
+			ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
+
 		private:
 			void Run();
 
@@ -41,6 +55,8 @@ namespace Elys {
 			bool OnWindowResize(WindowResizeEvent& e);
 
 		private:
+			ApplicationCommandLineArgs m_CommandLineArgs;
+
 			Scope<Window> m_Window;
 			ImGuiLayer* m_ImGuiLayer;
 			bool m_Running = true;
@@ -54,6 +70,5 @@ namespace Elys {
 	};
 
 	// To be defined in CLIENT
-	Application* CreateApplication();
-
+	Application* CreateApplication(ApplicationCommandLineArgs args);
 }
