@@ -16,3 +16,6 @@
 [submodule "Elys/vendor/ImGuizmo"]
 	path = Elys/vendor/ImGuizmo
 	url = https://github.com/thecherno/imguizmo
+[submodule "Elys/vendor/Box2D"]
+	path = Elys/vendor/Box2D
+	url = https://github.com/thecherno/box2d

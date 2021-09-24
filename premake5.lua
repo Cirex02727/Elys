@@ -26,6 +26,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 group "Dependencies"
 	include "vendor/premake"
+	include "Elys/vendor/Box2D"
 	include "Elys/vendor/GLFW"
 	include "Elys/vendor/Glad"
 	include "Elys/vendor/imgui"

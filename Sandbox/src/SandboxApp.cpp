@@ -208,7 +208,8 @@ class ExampleLayer : public Elys::Layer
 class Sandbox : public Elys::Application
 {
 	public:
-		Sandbox()
+		Sandbox(Elys::ApplicationCommandLineArgs args)
+			: Application("Elys Sandbox", args)
 		{
 			//PushLayer(new ExampleLayer());
 			PushLayer(new Sandbox2D());
@@ -217,7 +218,7 @@ class Sandbox : public Elys::Application
 		~Sandbox() {}
 };
 
-Elys::Application* Elys::CreateApplication()
+Elys::Application* Elys::CreateApplication(ApplicationCommandLineArgs args)
 {
-	return new Sandbox();
+	return new Sandbox(args);
 }

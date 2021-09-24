@@ -258,6 +258,24 @@ namespace Elys {
 				ImGui::CloseCurrentPopup();
 			}
 
+			if (ImGui::MenuItem("Rigidbody 2D"))
+			{
+				if (!m_SelectionContext.HasComponent<Rigidbody2DComponent>())
+					m_SelectionContext.AddComponent<Rigidbody2DComponent>();
+				else
+					ELYS_CORE_WARN("This entity already has the Rigidbody 2D Component!");
+				ImGui::CloseCurrentPopup();
+			}
+
+			if (ImGui::MenuItem("Box Collider 2D"))
+			{
+				if (!m_SelectionContext.HasComponent<BoxCollider2DComponent>())
+					m_SelectionContext.AddComponent<BoxCollider2DComponent>();
+				else
+					ELYS_CORE_WARN("This entity already has the Box Collider 2D Component!");
+				ImGui::CloseCurrentPopup();
+			}
+
 			ImGui::EndPopup();
 		}
 
@@ -342,12 +360,52 @@ namespace Elys {
 					{
 						const wchar_t* path = (const wchar_t*)payload->Data;
 						std::filesystem::path texturePath = std::filesystem::path(g_AssetPath) / path;
-						component.Texture = Texture2D::Create(texturePath.string());
+						Ref<Texture2D> texture = Texture2D::Create(texturePath.string());
+						if (texture->IsLoaded())
+							component.Texture = texture;
+						else
+							ELYS_WARN("Could not load texture {0}", texturePath.filename().string());
 					}
 					ImGui::EndDragDropTarget();
 				}
 
 				ImGui::DragFloat("Tiling Factor", glm::value_ptr(component.TilingFactor), 0.1f, 0.0f, 100.0f);
+			});
+
+		DrawComponent<Rigidbody2DComponent>("Rigidbody 2D", entity, [](auto& component)
+			{
+				const char* bodyTypeString[] = { "Static", "Dynamic", "Kinematic" };
+				const char* currentBodyTypeString = bodyTypeString[(int)component.Type];
+
+				if (ImGui::BeginCombo("Body Type", currentBodyTypeString))
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						bool isSeleted = currentBodyTypeString == bodyTypeString[i];
+						if (ImGui::Selectable(bodyTypeString[i], isSeleted))
+						{
+							currentBodyTypeString = bodyTypeString[i];
+							component.Type = (Rigidbody2DComponent::BodyType)i;
+						}
+
+						if (isSeleted)
+							ImGui::SetItemDefaultFocus();
+					}
+
+					ImGui::EndCombo();
+				}
+
+				ImGui::Checkbox("Fixed Rotation", &component.FixedRotation);
+			});
+
+		DrawComponent<BoxCollider2DComponent>("Box Collider 2D", entity, [](auto& component)
+			{
+				ImGui::DragFloat2("Offset", glm::value_ptr(component.Offset));
+				ImGui::DragFloat2("Size", glm::value_ptr(component.Size));
+				ImGui::DragFloat("Density", &component.Density, 0.01f, 0.0f, 1.0f);
+				ImGui::DragFloat("Friction", &component.Friction, 0.01f, 0.0f, 1.0f);
+				ImGui::DragFloat("Restitution", &component.Restitution, 0.01f, 0.0f, 1.0f);
+				ImGui::DragFloat("Restitution Threshold", &component.RestitutionThreshold, 0.01f, 0.0f);
 			});
 	}
 }
