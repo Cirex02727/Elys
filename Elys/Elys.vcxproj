@@ -158,6 +158,7 @@
     <ClInclude Include="src\Elys\Core\PlatformDetection.h" />
     <ClInclude Include="src\Elys\Core\Timer.h" />
     <ClInclude Include="src\Elys\Core\Timestep.h" />
+    <ClInclude Include="src\Elys\Core\UUID.h" />
     <ClInclude Include="src\Elys\Core\Window.h" />
     <ClInclude Include="src\Elys\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Elys\Events\Event.h" />
@@ -626,6 +627,7 @@
     <ClCompile Include="src\Elys\Core\Layer.cpp" />
     <ClCompile Include="src\Elys\Core\LayerStack.cpp" />
     <ClCompile Include="src\Elys\Core\Log.cpp" />
+    <ClCompile Include="src\Elys\Core\UUID.cpp" />
     <ClCompile Include="src\Elys\Core\Window.cpp" />
     <ClCompile Include="src\Elys\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Elys\ImGui\ImGuiLayer.cpp" />

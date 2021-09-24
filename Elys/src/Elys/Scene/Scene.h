@@ -1,9 +1,10 @@
 #pragma once
 
-#include "entt.hpp"
+#include "Elys/Core/Timestep.h"
+#include "Elys/Core/UUID.h"
 #include "Elys/Renderer/EditorCamera.h"
 
-#include "Elys/Core/Timestep.h"
+#include "entt.hpp"
 
 class b2World;
 
@@ -18,6 +19,7 @@ namespace Elys {
 			~Scene();
 
 			Entity CreateEntity(const std::string& name = std::string());
+			Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 			void DestroyEntity(Entity entity);
 
 			void OnRuntimeStart();

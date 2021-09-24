@@ -111,6 +111,9 @@
     <ClInclude Include="src\Elys\Core\Timestep.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elys\Core\UUID.h">
+      <Filter>src\Elys\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Elys\Core\Window.h">
       <Filter>src\Elys\Core</Filter>
     </ClInclude>
@@ -1509,6 +1512,9 @@
       <Filter>src\Elys\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Core\Log.cpp">
+      <Filter>src\Elys\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elys\Core\UUID.cpp">
       <Filter>src\Elys\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Elys\Core\Window.cpp">
