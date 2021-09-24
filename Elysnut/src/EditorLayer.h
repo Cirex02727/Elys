@@ -2,6 +2,7 @@
 
 #include "Elys.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 
 #include "Elys/Renderer/EditorCamera.h"
 
@@ -58,5 +59,6 @@ namespace Elys {
 
 			// Panels
 			SceneHierarchyPanel m_SceneHierarchyPanel;
+			ContentBrowserPanel m_ContentBrowserPanel;
 	};
 }

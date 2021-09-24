@@ -225,6 +225,7 @@ namespace Elys {
 		}
 
 		m_SceneHierarchyPanel.OnImGuiRender();
+		m_ContentBrowserPanel.OnImGuiRender();
 
 		ImGui::Begin("Render2D Stats");
 
